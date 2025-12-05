@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ZAP Platform - Security Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007BFF",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#1A1D21",
+                        "panel-dark": "#24282F",
+                        "border-dark": "#3a414c",
+                        "critical": "#DC3545",
+                        "high": "#FF8C00",
+                        "medium": "#FFC107",
+                        "low": "#17A2B8",
+                        "info": "#6C757D",
+                        "success": "#28A745",
+                        "text-light": "#e0e0e0",
+                        "text-muted": "#8899a6"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light">
+    <div class="flex min-h-screen">
+        <!-- SideNavBar -->
+        <aside class="flex w-64 flex-col bg-panel-dark p-4 border-r border-border-dark">
+            <div class="flex flex-col gap-8">
+                <div class="flex items-center gap-3 px-2">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        data-alt="ZAP Platform logo with abstract shapes"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAR3pef8hYIn-EvWUZsd5MyUQRmSAbpdtvpO3EC-DBpovwI5eaNIF9dgC7hFPKDnMklVhNaK7V7lmOlON28C1qr5uadq2TqqEssie2HNZWZ4x7bu3L2MpO97WFqrmARPyhJHVQID4UgTWLxzm2pgRNTPHe6hcZMA6dooYqv1Rf9-teXYlwjsGEIcLpMc3JsYu2j-UXkFwk5eimyOnxdDvfNCmZuuxbkypCDGBmOYVRCrpNZ0OwocD6TP2P1USfn4ueoJs7gcjWoXuU");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-white text-base font-semibold leading-normal">ZAP Platform</h1>
+                        <p class="text-text-muted text-sm font-normal leading-normal">Security Dashboard</p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/20 text-primary" href="#">
+                        <span class="material-symbols-outlined text-primary">dashboard</span>
+                        <p class="text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light"
+                        href="#">
+                        <span class="material-symbols-outlined">biotech</span>
+                        <p class="text-sm font-medium leading-normal">Scan</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light"
+                        href="#">
+                        <span class="material-symbols-outlined">summarize</span>
+                        <p class="text-sm font-medium leading-normal">History</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light"
+                        href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                </nav>
+            </div>
+            <div class="mt-auto">
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light" href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p class="text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <div class="flex flex-1 flex-col">
+            <!-- TopNavBar -->
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-panel-dark px-8 py-4 sticky top-0 z-10">
+                <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Dashboard</h2>
+                <div class="flex flex-1 justify-end items-center gap-4">
+                    <label class="relative flex-col min-w-40 !h-10 max-w-sm hidden md:flex">
+                        <span
+                            class="material-symbols-outlined text-text-muted absolute left-3 top-1/2 -translate-y-1/2 text-xl">search</span>
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light focus:outline-0 focus:ring-2 focus:ring-primary border-border-dark bg-background-dark h-full placeholder:text-text-muted pl-10 pr-4 text-sm font-normal leading-normal"
+                            placeholder="Search scans, targets..." value="" />
+                    </label>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent text-text-muted hover:bg-white/10 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-2xl">notifications</span>
+                        </button>
+                        <button
+                            class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent text-text-muted hover:bg-white/10 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-2xl">help_outline</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                            data-alt="User avatar with a gradient background"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlEIBRGvOVFC229Ev4kVgJFhEhw_qPJJUYa8Qy8WAzhn5xuBeVvgjglU9uJv4Erm7qEaQeqHEiG4BrmIzJVLqmlcg6Z1vzKv-uMl0vVABHoBM9OiyoRSQ2Wto92itE_qrmEFWeabIl2h6GWBJ3EWYY4kJJIAgz0XE0BB4M8A69qiReFK3nNiocnXTF9bEyDL35Zrn54cZgnKwUNoVEQu8n_HpY10U3LWd4XSwATls2LRAIN8ZA3jszJ485cXJ98vlNomoDLEpRUus");'>
+                        </div>
+                        <div class="hidden lg:flex flex-col text-right">
+                            <p class="text-sm font-medium text-white">Alex Hudson</p>
+                            <p class="text-xs text-text-muted">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Page Content -->
+            <main class="flex-1 overflow-y-auto p-8">
+                <div class="grid grid-cols-1 gap-8">
+                    <!-- Stats Section -->
+                    <section class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+                        <div class="flex flex-1 flex-col gap-2 rounded-lg p-6 bg-panel-dark border border-border-dark">
+                            <p class="text-text-muted text-sm font-medium leading-normal">Total Open Alerts</p>
+                            <p class="text-white tracking-light text-3xl font-bold leading-tight">1,204</p>
+                            <p class="text-success text-sm font-medium leading-normal flex items-center"><span
+                                    class="material-symbols-outlined text-base mr-1">arrow_upward</span>5.2%</p>
+                        </div>
+                        <div class="flex flex-1 flex-col gap-2 rounded-lg p-6 bg-panel-dark border border-border-dark">
+                            <p class="text-text-muted text-sm font-medium leading-normal">Apps Scanned</p>
+                            <p class="text-white tracking-light text-3xl font-bold leading-tight">86</p>
+                            <p class="text-critical text-sm font-medium leading-normal flex items-center"><span
+                                    class="material-symbols-outlined text-base mr-1">arrow_downward</span>1.0%</p>
+                        </div>
+                        <div class="flex flex-1 flex-col gap-2 rounded-lg p-6 bg-panel-dark border border-border-dark">
+                            <p class="text-text-muted text-sm font-medium leading-normal">High-Severity Findings</p>
+                            <p class="text-white tracking-light text-3xl font-bold leading-tight">79</p>
+                            <p class="text-success text-sm font-medium leading-normal flex items-center"><span
+                                    class="material-symbols-outlined text-base mr-1">arrow_upward</span>12%</p>
+                        </div>
+                        <div class="flex flex-1 flex-col gap-2 rounded-lg p-6 bg-panel-dark border border-border-dark">
+                            <p class="text-text-muted text-sm font-medium leading-normal">Scans in Last 7 Days</p>
+                            <p class="text-white tracking-light text-3xl font-bold leading-tight">215</p>
+                            <p class="text-success text-sm font-medium leading-normal flex items-center"><span
+                                    class="material-symbols-outlined text-base mr-1">arrow_upward</span>8.5%</p>
+                        </div>
+                    </section>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Chart and Quick Actions -->
+                        <div class="lg:col-span-2 flex flex-col gap-8">
+                            <!-- Chart -->
+                            <section
+                                class="flex min-w-72 flex-1 flex-col gap-4 rounded-lg border border-border-dark p-6 bg-panel-dark">
+                                <p class="text-white text-base font-semibold leading-normal">Vulnerabilities by Severity
+                                </p>
+                                <div class="flex gap-1">
+                                    <p class="text-text-muted text-sm font-normal leading-normal">Last 30 Days</p>
+                                    <p class="text-success text-sm font-medium leading-normal">+15.3%</p>
+                                </div>
+                                <div class="flex flex-col md:flex-row items-center gap-6">
+                                    <div class="relative size-48">
+                                        <svg class="size-full" viewbox="0 0 36 36">
+                                            <path
+                                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                fill="none" stroke="#6C757D" stroke-width="3"></path>
+                                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none"
+                                                stroke="#17A2B8" stroke-dasharray="80, 100" stroke-width="3"></path>
+                                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none"
+                                                stroke="#FFC107" stroke-dasharray="55, 100" stroke-width="3"></path>
+                                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none"
+                                                stroke="#FF8C00" stroke-dasharray="30, 100" stroke-width="3"></path>
+                                            <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none"
+                                                stroke="#DC3545" stroke-dasharray="10, 100" stroke-width="3"></path>
+                                        </svg>
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                            <span class="text-3xl font-bold text-white">1,204</span>
+                                            <span class="text-sm text-text-muted">Total</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 md:grid-cols-1 gap-x-6 gap-y-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-3 rounded-full bg-critical"></div><span
+                                                class="text-sm">Critical</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-3 rounded-full bg-high"></div><span
+                                                class="text-sm">High</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-3 rounded-full bg-medium"></div><span
+                                                class="text-sm">Medium</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-3 rounded-full bg-low"></div><span
+                                                class="text-sm">Low</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-3 rounded-full bg-info"></div><span
+                                                class="text-sm">Informational</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Recent Scans -->
+                            <section>
+                                <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Recent
+                                    Scan Activity</h2>
+                                <div class="overflow-x-auto rounded-lg border border-border-dark bg-panel-dark">
+                                    <table class="w-full text-left text-sm">
+                                        <thead class="border-b border-border-dark text-xs uppercase text-text-muted">
+                                            <tr>
+                                                <th class="px-6 py-3" scope="col">Target Name</th>
+                                                <th class="px-6 py-3" scope="col">Status</th>
+                                                <th class="px-6 py-3" scope="col">Date</th>
+                                                <th class="px-6 py-3" scope="col">Findings</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b border-border-dark hover:bg-white/5 cursor-pointer">
+                                                <td class="px-6 py-4 font-medium text-white">WebApp-Production</td>
+                                                <td class="px-6 py-4"><span
+                                                        class="inline-flex items-center rounded-full bg-success/20 px-2.5 py-0.5 text-xs font-medium text-success">
+                                                        <div class="size-2 rounded-full bg-success mr-2"></div>Completed
+                                                    </span></td>
+                                                <td class="px-6 py-4 text-text-muted">2 hours ago</td>
+                                                <td class="px-6 py-4">5 High, 12 Medium</td>
+                                            </tr>
+                                            <tr class="border-b border-border-dark hover:bg-white/5 cursor-pointer">
+                                                <td class="px-6 py-4 font-medium text-white">Internal-API</td>
+                                                <td class="px-6 py-4"><span
+                                                        class="inline-flex items-center rounded-full bg-primary/20 px-2.5 py-0.5 text-xs font-medium text-primary">
+                                                        <div class="size-2 rounded-full bg-primary mr-2 animate-pulse">
+                                                        </div>In Progress
+                                                    </span></td>
+                                                <td class="px-6 py-4 text-text-muted">1 day ago</td>
+                                                <td class="px-6 py-4">--</td>
+                                            </tr>
+                                            <tr class="border-b border-border-dark hover:bg-white/5 cursor-pointer">
+                                                <td class="px-6 py-4 font-medium text-white">Staging-Frontend</td>
+                                                <td class="px-6 py-4"><span
+                                                        class="inline-flex items-center rounded-full bg-critical/20 px-2.5 py-0.5 text-xs font-medium text-critical">
+                                                        <div class="size-2 rounded-full bg-critical mr-2"></div>Failed
+                                                    </span></td>
+                                                <td class="px-6 py-4 text-text-muted">3 days ago</td>
+                                                <td class="px-6 py-4">N/A</td>
+                                            </tr>
+                                            <tr class="hover:bg-white/5 cursor-pointer">
+                                                <td class="px-6 py-4 font-medium text-white">Auth-Service</td>
+                                                <td class="px-6 py-4"><span
+                                                        class="inline-flex items-center rounded-full bg-success/20 px-2.5 py-0.5 text-xs font-medium text-success">
+                                                        <div class="size-2 rounded-full bg-success mr-2"></div>Completed
+                                                    </span></td>
+                                                <td class="px-6 py-4 text-text-muted">5 days ago</td>
+                                                <td class="px-6 py-4">1 Critical, 8 Medium</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- Quick Actions -->
+                        <div class="lg:col-span-1">
+                            <section class="rounded-lg border border-border-dark p-6 bg-panel-dark">
+                                <h2 class="text-white text-base font-semibold leading-tight pb-4">Quick Actions</h2>
+                                <div class="flex flex-col gap-4">
+                                    <button
+                                        class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                                        <span class="material-symbols-outlined text-xl">add</span>
+                                        <span>Start New Scan</span>
+                                    </button>
+                                    <button
+                                        class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/10 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/20 transition-colors">
+                                        <span class="material-symbols-outlined text-xl">add_circle</span>
+                                        <span>Add New Target</span>
+                                    </button>
+                                    <button
+                                        class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/10 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/20 transition-colors">
+                                        <span class="material-symbols-outlined text-xl">assessment</span>
+                                        <span>Generate Report</span>
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

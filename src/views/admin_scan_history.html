@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ZAP Platform - Security Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007BFF",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#1A1D21",
+                        "panel-dark": "#24282F",
+                        "border-dark": "#3a414c",
+                        "critical": "#DC3545",
+                        "high": "#FF8C00",
+                        "medium": "#FFC107",
+                        "low": "#17A2B8",
+                        "info": "#6C757D",
+                        "success": "#28A745",
+                        "text-light": "#e0e0e0",
+                        "text-muted": "#8899a6"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light">
+    <div class="flex min-h-screen">
+        <!-- SideNavBar -->
+        <aside class="flex w-64 flex-col bg-panel-dark p-4 border-r border-border-dark">
+            <div class="flex flex-col gap-8">
+                <div class="flex items-center gap-3 px-2">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        data-alt="ZAP Platform logo with abstract shapes"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAR3pef8hYIn-EvWUZsd5MyUQRmSAbpdtvpO3EC-DBpovwI5eaNIF9dgC7hFPKDnMklVhNaK7V7lmOlON28C1qr5uadq2TqqEssie2HNZWZ4x7bu3L2MpO97WFqrmARPyhJHVQID4UgTWLxzm2pgRNTPHe6hcZMA6dooYqv1Rf9-teXYlwjsGEIcLpMc3JsYu2j-UXkFwk5eimyOnxdDvfNCmZuuxbkypCDGBmOYVRCrpNZ0OwocD6TP2P1USfn4ueoJs7gcjWoXuU");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-white text-base font-semibold leading-normal">ZAP Platform</h1>
+                        <p class="text-text-muted text-sm font-normal leading-normal">Security Dashboard</p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/20 text-primary" href="#">
+                        <span class="material-symbols-outlined text-primary">dashboard</span>
+                        <p class="text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light"
+                        href="#">
+                        <span class="material-symbols-outlined">biotech</span>
+                        <p class="text-sm font-medium leading-normal">Scan</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light"
+                        href="#">
+                        <span class="material-symbols-outlined">summarize</span>
+                        <p class="text-sm font-medium leading-normal">History</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light"
+                        href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                </nav>
+            </div>
+            <div class="mt-auto">
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 text-text-light" href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p class="text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <div class="flex flex-1 flex-col">
+            <!-- TopNavBar -->
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-panel-dark px-8 py-4 sticky top-0 z-10">
+                <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Dashboard</h2>
+                <div class="flex flex-1 justify-end items-center gap-4">
+                    <label class="relative flex-col min-w-40 !h-10 max-w-sm hidden md:flex">
+                        <span
+                            class="material-symbols-outlined text-text-muted absolute left-3 top-1/2 -translate-y-1/2 text-xl">search</span>
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light focus:outline-0 focus:ring-2 focus:ring-primary border-border-dark bg-background-dark h-full placeholder:text-text-muted pl-10 pr-4 text-sm font-normal leading-normal"
+                            placeholder="Search scans, targets..." value="" />
+                    </label>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent text-text-muted hover:bg-white/10 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-2xl">notifications</span>
+                        </button>
+                        <button
+                            class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent text-text-muted hover:bg-white/10 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-2xl">help_outline</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                            data-alt="User avatar with a gradient background"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlEIBRGvOVFC229Ev4kVgJFhEhw_qPJJUYa8Qy8WAzhn5xuBeVvgjglU9uJv4Erm7qEaQeqHEiG4BrmIzJVLqmlcg6Z1vzKv-uMl0vVABHoBM9OiyoRSQ2Wto92itE_qrmEFWeabIl2h6GWBJ3EWYY4kJJIAgz0XE0BB4M8A69qiReFK3nNiocnXTF9bEyDL35Zrn54cZgnKwUNoVEQu8n_HpY10U3LWd4XSwATls2LRAIN8ZA3jszJ485cXJ98vlNomoDLEpRUus");'>
+                        </div>
+                        <div class="hidden lg:flex flex-col text-right">
+                            <p class="text-sm font-medium text-white">Alex Hudson</p>
+                            <p class="text-xs text-text-muted">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Page Content -->
+            <main class="flex-1 p-8">
+                <div class="w-full max-w-7xl mx-auto">
+                    <!-- PageHeading -->
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex min-w-72 flex-col gap-2">
+                            <p class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">Scan History</p>
+                            <p class="text-slate-500 dark:text-[#92a4c9] text-base font-normal leading-normal">View a
+                                chronological log of all security scans.</p>
+                        </div>
+                    </div>
+                    <!-- Filters -->
+                    <div class="mt-6 flex flex-col gap-4 md:flex-row md:items-center">
+                        <div class="relative w-full md:max-w-xs">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <span class="material-symbols-outlined text-slate-400">search</span>
+                            </div>
+                            <input
+                                class="w-full rounded-lg border-slate-300 bg-white py-2 pl-10 pr-4 text-sm text-slate-900 focus:border-primary focus:ring-primary dark:border-slate-700 dark:bg-[#192233] dark:text-white dark:placeholder-slate-400"
+                                placeholder="Search by target URL..." type="text" />
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg border border-slate-300 bg-white px-3 text-slate-700 dark:border-slate-700 dark:bg-[#232f48] dark:text-white">
+                                <p class="text-sm font-medium leading-normal">Status: All</p>
+                                <span class="material-symbols-outlined text-base">expand_more</span>
+                            </button>
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg border border-slate-300 bg-white px-3 text-slate-700 dark:border-slate-700 dark:bg-[#232f48] dark:text-white">
+                                <span class="material-symbols-outlined text-base">calendar_today</span>
+                                <p class="text-sm font-medium leading-normal">Date Range</p>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Table -->
+                    <div class="mt-6 flow-root">
+                        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <div class="overflow-hidden rounded-lg border border-slate-200 dark:border-[#324467]">
+                                    <table class="min-w-full divide-y divide-slate-200 dark:divide-[#324467]">
+                                        <thead class="bg-slate-50 dark:bg-[#192233]">
+                                            <tr>
+                                                <th class="px-4 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white"
+                                                    scope="col">Scan Date</th>
+                                                <th class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white"
+                                                    scope="col">Target URL</th>
+                                                <th class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white"
+                                                    scope="col">Status</th>
+                                                <th class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white"
+                                                    scope="col">Vulnerabilities</th>
+                                                <th class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900 dark:text-white"
+                                                    scope="col">Duration</th>
+                                                <th class="relative py-3.5 pl-3 pr-4 sm:pr-6" scope="col"><span
+                                                        class="sr-only">Actions</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody
+                                            class="divide-y divide-slate-200 bg-white dark:divide-[#324467] dark:bg-[#111722]">
+                                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                                                <td
+                                                    class="whitespace-nowrap px-4 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    2023-10-26 14:30</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                                                    https://example-app.com</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm">
+                                                    <span
+                                                        class="inline-flex items-center gap-x-1.5 rounded-full bg-success/10 px-2 py-1 text-xs font-medium text-success dark:bg-success/20">
+                                                        <div class="size-1.5 rounded-full bg-success"></div>Completed
+                                                    </span>
+                                                </td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    <span class="font-semibold text-danger">Critical: 2</span>, High: 5</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    45 min</td>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a class="text-primary hover:text-primary/80" href="#">View Report<span
+                                                            class="sr-only">, for https://example-app.com</span></a>
+                                                </td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                                                <td
+                                                    class="whitespace-nowrap px-4 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    2023-10-25 11:00</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                                                    https://webapp-staging.io</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm">
+                                                    <span
+                                                        class="inline-flex items-center gap-x-1.5 rounded-full bg-info/10 px-2 py-1 text-xs font-medium text-info dark:bg-info/20">
+                                                        <div class="size-1.5 rounded-full bg-info"></div>In Progress
+                                                    </span>
+                                                </td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    Running...</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    15 min</td>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a class="text-primary hover:text-primary/80" href="#">View Report<span
+                                                            class="sr-only">, for https://webapp-staging.io</span></a>
+                                                </td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                                                <td
+                                                    class="whitespace-nowrap px-4 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    2023-10-24 09:15</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                                                    https://legacy-system.net</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm">
+                                                    <span
+                                                        class="inline-flex items-center gap-x-1.5 rounded-full bg-danger/10 px-2 py-1 text-xs font-medium text-danger dark:bg-danger/20">
+                                                        <div class="size-1.5 rounded-full bg-danger"></div>Failed
+                                                    </span>
+                                                </td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    Scan timed out</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    2 hours</td>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a class="text-primary hover:text-primary/80" href="#">View Report<span
+                                                            class="sr-only">, for https://legacy-system.net</span></a>
+                                                </td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                                                <td
+                                                    class="whitespace-nowrap px-4 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    2023-10-23 18:00</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                                                    https://api.service.dev</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm">
+                                                    <span
+                                                        class="inline-flex items-center gap-x-1.5 rounded-full bg-success/10 px-2 py-1 text-xs font-medium text-success dark:bg-success/20">
+                                                        <div class="size-1.5 rounded-full bg-success"></div>Completed
+                                                    </span>
+                                                </td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    <span class="font-semibold text-warning">High: 1</span>, Medium: 8</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    22 min</td>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a class="text-primary hover:text-primary/80" href="#">View Report<span
+                                                            class="sr-only">, for https://api.service.dev</span></a>
+                                                </td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                                                <td
+                                                    class="whitespace-nowrap px-4 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    2023-10-22 12:45</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm font-medium text-slate-900 dark:text-white">
+                                                    https://user-portal.com</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm">
+                                                    <span
+                                                        class="inline-flex items-center gap-x-1.5 rounded-full bg-success/10 px-2 py-1 text-xs font-medium text-success dark:bg-success/20">
+                                                        <div class="size-1.5 rounded-full bg-success"></div>Completed
+                                                    </span>
+                                                </td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    No vulnerabilities found</td>
+                                                <td
+                                                    class="whitespace-nowrap px-3 py-4 text-sm text-slate-500 dark:text-[#92a4c9]">
+                                                    31 min</td>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a class="text-primary hover:text-primary/80" href="#">View Report<span
+                                                            class="sr-only">, for https://user-portal.com</span></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <nav aria-label="Pagination"
+                        class="mt-6 flex items-center justify-between border-t border-slate-200 px-4 py-3 sm:px-6 dark:border-slate-700">
+                        <div class="hidden sm:block">
+                            <p class="text-sm text-slate-700 dark:text-slate-400">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span
+                                    class="font-medium">20</span> results
+                            </p>
+                        </div>
+                        <div class="flex flex-1 justify-between sm:justify-end">
+                            <a class="relative inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-[#192233] dark:text-slate-300 dark:hover:bg-slate-800"
+                                href="#">Previous</a>
+                            <a class="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-[#192233] dark:text-slate-300 dark:hover:bg-slate-800"
+                                href="#">Next</a>
+                        </div>
+                    </nav>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
