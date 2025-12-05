@@ -19,6 +19,48 @@ const router = createRouter({
           name: 'detail',
           component: () => import('../views/DetailView.vue'),
         },
+        {
+          path: 'docs',
+          name: 'docs',
+          component: () => import('../views/DocsView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/login',
+      component: () => import('../layouts/LoginLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'login',
+          component: () => import('../views/LoginView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/dashboard',
+      component: () => import('../layouts/AdminLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'dashboard',
+          component: () => import('../views/Dasboard.vue'),
+        },
+        {
+          path: 'scan',
+          name: 'scan',
+          component: () => import('../views/ScanView.vue'),
+        },
+        {
+          path: 'history',
+          name: 'history',
+          component: () => import('../views/ScanHistoryView.vue'),
+        },
+        {
+          path: 'settings',
+          name: 'settings',
+          component: () => import('../views/SettingsView.vue'),
+        },
       ],
     },
   ],
