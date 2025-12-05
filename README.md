@@ -1,42 +1,52 @@
-# front
+# Frontend - Taslama Gollanmasy
 
-This template should help get you started developing with Vue 3 in Vite.
+Bu taslamanyň müşderi tarapy (frontend) **Vue 3** we **Vite** ulanylyp döredildi. Dizaýn üçin **Tailwind CSS** ulanylýar.
 
-## Recommended IDE Setup
+## Talaplar (Prerequisites)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Node.js**: (Wersiýa 18.0.0 ýa-da ýokary bolmagy maslahat berilýär)
+- **npm** ýa-da **yarn**
 
-## Recommended Browser Setup
+## Gurnamak we Işletmek
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Taslamany işe girizmek üçin aşakdaky buýruklary terminalda ýerine ýetiriň:
 
-## Type Support for `.vue` Imports in TS
+1. **Baglylyklary (Dependencies) ýüklemek:**
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+   Taslamanyň bukjasyna giriň we paketleri gurnaň:
 
-## Customize configuration
+   ```bash
+   npm install
+   ```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+2. **Taslamany işläp düzmek (Development Mode):**
 
-## Project Setup
+   Ösüş döwründe (development) sahypany görmek üçin:
 
-```sh
-npm install
-```
+   ```bash
+   npm run dev
+   ```
 
-### Compile and Hot-Reload for Development
+   Bu buýruk lokal serweri işe girizer (adatça `http://localhost:5173` salgysynda).
 
-```sh
-npm run dev
-```
+3. **Önümçilik üçin ýygnamak (Production Build):**
 
-### Type-Check, Compile and Minify for Production
+   Taslamany serwere ýerleşdirmek (deploy) üçin paketlemek:
 
-```sh
-npm run build
-```
+   ```bash
+   npm run build
+   ```
+
+   Ýygnalan faýllar `dist/` bukjasyna düşer.
+
+4. **Kod barlagy we formatirlemek:**
+   - Type barlagy üçin: `npm run type-check`
+   - Kody tertiplemek üçin: `npm run format`
+
+## Tehnologiýalar
+
+- **Vue 3** - Esasy JavaScript çarçuwasy.
+- **TypeScript** - Kod howpsuzlygy we düşnükliligi üçin.
+- **Vite** - Çalt işlemek we gurnamak üçin gural.
+- **Tailwind CSS** - CSS stilleri üçin atly gural.
+- **Pinia** - State management (ýagdaýy dolandyrmak) üçin.
