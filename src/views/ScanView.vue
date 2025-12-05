@@ -23,9 +23,80 @@
                         <span class="truncate">Scan Now</span>
                     </button>
                 </div>
-                <p
-                    class="text-slate-400 text-sm font-normal leading-normal pb-3 pt-1 px-4 underline cursor-pointer hover:text-primary transition-colors">
-                    Advanced Options</p>
+
+                <!-- Advanced Options Toggle -->
+                <p @click="showAdvancedOptions = !showAdvancedOptions"
+                    class="text-slate-400 text-sm font-normal leading-normal pb-3 pt-1 px-4 underline cursor-pointer hover:text-primary transition-colors select-none w-fit">
+                    Advanced Options
+                    <span class="ml-1 text-xs">{{ showAdvancedOptions ? '▲' : '▼' }}</span>
+                </p>
+
+                <!-- Advanced Options Panel -->
+                <transition enter-active-class="transition duration-200 ease-out"
+                    enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
+                    leave-active-class="transition duration-75 ease-in"
+                    leave-from-class="transform scale-100 opacity-100" leave-to-class="transform scale-95 opacity-0">
+                    <div v-if="showAdvancedOptions"
+                        class="px-4 py-4 mt-2 mx-4 bg-[#1e2329] rounded-xl border border-white/5 space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Scan Depth -->
+                            <label class="flex flex-col">
+                                <span class="text-white text-sm font-medium mb-2">Scan Depth</span>
+                                <select
+                                    class="form-select w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                                    <option value="quick">Quick Scan</option>
+                                    <option value="standard">Standard Scan</option>
+                                    <option value="deep">Deep Scan</option>
+                                </select>
+                            </label>
+
+                            <!-- User Agent -->
+                            <label class="flex flex-col">
+                                <span class="text-white text-sm font-medium mb-2">User Agent</span>
+                                <input type="text"
+                                    class="form-input w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none placeholder:text-slate-500"
+                                    placeholder="Mozilla/5.0..." />
+                            </label>
+
+                            <!-- Concurrent Threads -->
+                            <label class="flex flex-col">
+                                <span class="text-white text-sm font-medium mb-2">Concurrent Threads</span>
+                                <input type="number" min="1" max="100" value="10"
+                                    class="form-input w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </label>
+
+                            <!-- Request Timeout -->
+                            <label class="flex flex-col">
+                                <span class="text-white text-sm font-medium mb-2">Request Timeout (ms)</span>
+                                <input type="number" min="1000" step="500" value="5000"
+                                    class="form-input w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                            </label>
+                        </div>
+
+                        <!-- Checkboxes for specific options -->
+                        <div class="flex flex-col space-y-3 pt-2">
+                            <span class="text-white text-sm font-medium">Additional Flags</span>
+                            <div class="flex flex-wrap gap-4">
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox"
+                                        class="form-checkbox text-primary rounded bg-[#2d333b] border-white/10" />
+                                    <span class="ml-2 text-slate-300 text-sm">Follow Redirects</span>
+                                </label>
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox"
+                                        class="form-checkbox text-primary rounded bg-[#2d333b] border-white/10" />
+                                    <span class="ml-2 text-slate-300 text-sm">Ignore SSL Errors</span>
+                                </label>
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox"
+                                        class="form-checkbox text-primary rounded bg-[#2d333b] border-white/10" />
+                                    <span class="ml-2 text-slate-300 text-sm">Scan Subdomains</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+
             </section>
             <section class="w-full py-8 md:py-12 border-t border-white/5">
                 <h3 class="text-2xl font-bold text-white px-4 mb-2">Scan Results for example.com
@@ -126,4 +197,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const showAdvancedOptions = ref(false);
 </script>
