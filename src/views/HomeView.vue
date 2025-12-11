@@ -11,7 +11,7 @@
                             Stay Ahead of Threats: The ZAP Security Blog
                         </h1>
                         <h2
-                            class="text-slate-300 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                            class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
                             Expert insights on identifying and mitigating the top web application vulnerabilities.
                         </h2>
                     </div>
@@ -43,103 +43,155 @@
                 class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-primary pl-4 pr-4">
                 <p class="text-white text-sm font-medium leading-normal">All Posts</p>
             </div>
-            <div v-for="tag in ['SQL Injection', 'XSS', 'CSRF', 'Broken Authentication', 'Insecure Deserialization']"
-                :key="tag"
+            <div v-for="category in blogCategoriesData" :key="category.id"
                 class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-slate-200 dark:bg-[#1e2329] border border-transparent dark:border-white/10 pl-4 pr-4 hover:bg-slate-300 dark:hover:bg-white/5 transition-colors">
-                <p class="text-slate-700 dark:text-slate-300 text-sm font-medium leading-normal">{{ tag }}</p>
+                <p class="text-white dark:text-gray-300 text-sm font-medium leading-normal">{{ category.name }}</p>
             </div>
         </div>
 
         <!-- ImageGrid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-            <!-- Card 1 -->
-            <router-link to="/detail" class="flex flex-col gap-3 pb-3 group cursor-pointer">
-                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
-                    <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2Reqx2ttxxtvt7i2_h8s6e7lnHkZG--BWn4ZB3WO-8HUHzRtflvlNxxmZvxOcSptf9IwVkizsnBxF7X8Cgc6NDNZCu7evPMH43lkjDgqEPnf2WmYNIRmI_39tZ_jcX64GdWjTumrJGyK-xQ727DXuFUtO0tMi5apesw0tnfkTtIIPFk5nELlQALHK605MOqeCWnWlmJRdEaZPn93UREevzDgVsU0qUj5o1kBipP5D181piB5nJlaNREI4fBz81TKgnHFY2OhvL-w");'>
+            <template v-if="blogsData.length > 0">
+                <router-link v-for="blog in blogsData" :key="blog.id" :to="`/detail/${blog.id}`"
+                    class="flex flex-col gap-3 pb-3 group cursor-pointer">
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
+                        <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+                            :style='`background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2Reqx2ttxxtvt7i2_h8s6e7lnHkZG--BWn4ZB3WO-8HUHzRtflvlNxxmZvxOcSptf9IwVkizsnBxF7X8Cgc6NDNZCu7evPMH43lkjDgqEPnf2WmYNIRmI_39tZ_jcX64GdWjTumrJGyK-xQ727DXuFUtO0tMi5apesw0tnfkTtIIPFk5nELlQALHK605MOqeCWnWlmJRdEaZPn93UREevzDgVsU0qUj5o1kBipP5D181piB5nJlaNREI4fBz81TKgnHFY2OhvL-w");`'>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <p class="text-primary text-xs font-bold uppercase">XSS</p>
-                    <span
-                        class="text-slate-800 dark:text-white text-base font-bold leading-normal mt-1 group-hover:text-primary dark:group-hover:text-primary block">
-                        Deep Dive into Cross-Site Scripting: How to Protect Your App
-                    </span>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal mt-2">By Jane Doe -
-                        Oct 26, 2023</p>
-                </div>
-            </router-link>
-
-            <!-- Card 2 -->
-            <router-link to="/detail" class="flex flex-col gap-3 pb-3 group cursor-pointer">
-                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
-                    <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtEs0vYd3Pz7B-FVfE_IgX1kqkruy2X-m7NkJU5d4IXeo-_7-U5ULzCr8qHmG-qRKCyXppmVryfgdRSVOnRI_Kk7WHg3kFx9gg22jV2GTJp7qIFmqLfeYHaAVk-DRnZnbAvZThRHPrPKsimMWLzxwPwZrkvjvtaV5qFF1gTCqJI5_9ETyeH4FWXtv8UzaSly6sB22apLCBNOL8tLpczfLNH07_2gnqbslL8QuARSNtU2aiGP9tOppCQn0pY06qYDTSZPVUV9eRWyc");'>
+                    <div>
+                        <p class="text-primary text-xs font-bold uppercase">{{ getCategoryName(blog.category) }}</p>
+                        <span
+                            class="text-white dark:text-white text-base font-bold leading-normal mt-1 group-hover:text-primary dark:group-hover:text-primary block">
+                            {{ blog.title }}
+                        </span>
+                        <p class="text-white dark:text-slate-400 text-sm font-normal leading-normal mt-2">
+                            {{ new Date(blog.created_at).toLocaleDateString() }}
+                        </p>
                     </div>
-                </div>
-                <div>
-                    <p class="text-primary text-xs font-bold uppercase">SQL Injection</p>
-                    <span
-                        class="text-slate-800 dark:text-white text-base font-bold leading-normal mt-1 group-hover:text-primary dark:group-hover:text-primary block">
-                        Understanding SQL Injection Vulnerabilities</span>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal mt-2">By John Smith
-                        - Oct 24, 2023</p>
-                </div>
-            </router-link>
-
-            <!-- Card 3 -->
-            <router-link to="/detail" class="flex flex-col gap-3 pb-3 group cursor-pointer">
-                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
-                    <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWWzwLRoTfVYvEuKq7CY5j_7p16c9eGhWMko3nJZsGGDO8UmxtI0M-lelVWHLcrSmXX_n8OeFmatCkEp_I8Y8qbcruqzLdcS6mzXvmzWcUPYGQ8kpx_dgQFPi8Ka3cq21jSSL6xnYpTQxL8mgyfsxZQjE_pWR17JdXk3qz3oSN5GzCFKE8SiuqCV84UtVwvbCo7L607ldziHTvwUAioxHJ_p3JcKk9PVSZp5bnQF420gLbfLkY02yF9I6CeQJpYZh1AB6wj_2mh6s");'>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-primary text-xs font-bold uppercase">API Security</p>
-                    <span
-                        class="text-slate-800 dark:text-white text-base font-bold leading-normal mt-1 group-hover:text-primary dark:group-hover:text-primary block">
-                        Securing Your APIs Against Broken Object Level Authorization</span>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal mt-2">By Alex Ray -
-                        Oct 22, 2023</p>
-                </div>
-            </router-link>
-
-            <!-- Card 4 -->
-            <router-link to="/detail" class="flex flex-col gap-3 pb-3 group cursor-pointer">
-                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
-                    <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAj4qKe_fYKJLVm2Q21HLlYD2bzA-QBgUA4CSo5TQfXFrHI0UHte5S60gFMOJk1m911LiVzwm9RPlO6qEc6O0s7a_cFVH3OzX3RMdwOEZox5yEiJfqP-_hD7dL9QPmW2Azvr5Gj-l0jD_8fRJjQvzRwCmrebBVM40YfsaUClt6SCDPnrwV-GG-A4qGj1GIk9lmxpi3YlcKOBzfWjX6jeulYjwqfTWb1O0OEXq2sGMJz1G0uN-2WFErTokMcpp0RXoj_NiwlZY0veRY");'>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-primary text-xs font-bold uppercase">Deserialization</p>
-                    <span
-                        class="text-slate-800 dark:text-white text-base font-bold leading-normal mt-1 group-hover:text-primary dark:group-hover:text-primary block">
-                        A Guide to Preventing Insecure Deserialization</span>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal mt-2">By Sarah Lee -
-                        Oct 20, 2023</p>
-                </div>
-            </router-link>
+                </router-link>
+            </template>
+            <div v-else class="col-span-full text-center text-white">
+                Häzirlikçe maglumat ýok
+            </div>
         </div>
 
         <!-- Pagination -->
-        <div class="flex items-center justify-center p-4">
-            <a class="flex size-10 items-center justify-center text-slate-500 dark:text-white hover:text-primary"
-                href="#">
+        <div class="flex items-center justify-center p-4" v-if="totalPages > 1">
+            <button
+                class="flex size-10 items-center justify-center text-white dark:text-white hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                :disabled="!previousPageUrl" @click="changePage(currentPage - 1)">
                 <span class="material-symbols-outlined">chevron_left</span>
-            </a>
-            <a class="text-sm font-bold leading-normal tracking-[0.015em] flex size-10 items-center justify-center text-white rounded-full bg-primary"
-                href="#">1</a>
-            <a class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-slate-500 dark:text-white rounded-full hover:bg-slate-200 dark:hover:bg-[#1e2329]"
-                href="#">2</a>
-            <a class="flex size-10 items-center justify-center text-slate-500 dark:text-white hover:text-primary"
-                href="#">
+            </button>
+
+            <template v-for="(page, index) in visiblePages" :key="index">
+                <button v-if="page !== '...'" @click="changePage(page as number)" :class="[
+                    'flex size-10 items-center justify-center rounded-full text-sm font-bold leading-normal transition-colors',
+                    currentPage === page
+                        ? 'bg-primary text-white tracking-[0.015em]'
+                        : 'text-white dark:text-white hover:bg-slate-200 dark:hover:bg-[#1e2329] font-normal'
+                ]">
+                    {{ page }}
+                </button>
+                <span v-else class="flex size-10 items-center justify-center text-white dark:text-white">
+                    ...
+                </span>
+            </template>
+
+            <button
+                class="flex size-10 items-center justify-center text-white dark:text-white hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                :disabled="!nextPageUrl" @click="changePage(currentPage + 1)">
                 <span class="material-symbols-outlined">chevron_right</span>
-            </a>
+            </button>
         </div>
     </main>
 </template>
 
-<script setup>
-// Bu ýerde script logikalaryny goşup bilersiňiz
+<script setup lang="ts">
+import { ref, onMounted, computed } from 'vue';
+import { blogCategories, blogs } from '@/api/api_endpoints';
+
+// Define interfaces for better type safety (optional but good practice)
+interface BlogCategory {
+    id: number;
+    name: string;
+    description: string;
+    created_at: string;
+    updated_at: string;
+}
+
+interface Blog {
+    id: number;
+    title: string;
+    category: number;
+    description: string;
+    created_at: string;
+    updated_at: string;
+}
+
+const blogCategoriesData = ref<BlogCategory[]>([]);
+const blogsData = ref<Blog[]>([]);
+const currentPage = ref(1);
+const totalCount = ref(0);
+const nextPageUrl = ref<string | null>(null);
+const previousPageUrl = ref<string | null>(null);
+const pageSize = 10; // Assuming default page size of 10
+
+const totalPages = computed(() => Math.ceil(totalCount.value / pageSize));
+
+const visiblePages = computed(() => {
+    const pages: (number | string)[] = [];
+    const total = totalPages.value;
+    const current = currentPage.value;
+
+    // Simple pagination logic: show all if <= 7, otherwise show range
+    if (total <= 7) {
+        for (let i = 1; i <= total; i++) pages.push(i);
+    } else {
+        if (current <= 4) {
+            for (let i = 1; i <= 5; i++) pages.push(i);
+            pages.push('...');
+            pages.push(total);
+        } else if (current >= total - 3) {
+            pages.push(1);
+            pages.push('...');
+            for (let i = total - 4; i <= total; i++) pages.push(i);
+        } else {
+            pages.push(1);
+            pages.push('...');
+            for (let i = current - 1; i <= current + 1; i++) pages.push(i);
+            pages.push('...');
+            pages.push(total);
+        }
+    }
+    return pages;
+});
+
+const getCategoryName = (categoryId: number) => {
+    const category = blogCategoriesData.value.find((c) => c.id === categoryId);
+    return category ? category.name : 'General';
+};
+
+const fetchBlogs = (page: number) => {
+    blogs({ page }).then((res) => {
+        blogsData.value = res.data.results;
+        totalCount.value = res.data.count;
+        nextPageUrl.value = res.data.next;
+        previousPageUrl.value = res.data.previous;
+        currentPage.value = page;
+    });
+};
+
+const changePage = (page: number) => {
+    if (page >= 1 && page <= totalPages.value) {
+        fetchBlogs(page);
+    }
+};
+
+onMounted(() => {
+    blogCategories().then((res) => {
+        blogCategoriesData.value = res.data;
+    });
+    fetchBlogs(1);
+});
 </script>

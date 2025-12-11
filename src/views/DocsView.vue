@@ -30,7 +30,8 @@
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Getting Started</h3>
                 <p class="text-slate-600 text-white mb-4">Learn the basics of web application security and how
                     to use our platform.</p>
-                <a href="#" class="text-primary font-medium hover:underline">Read Guide →</a>
+                <router-link to="/docs/getting-started" class="text-primary font-medium hover:underline">Read Guide
+                    →</router-link>
             </div>
 
             <div
@@ -41,7 +42,8 @@
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">OWASP Top 10</h3>
                 <p class="text-slate-600 text-white mb-4">Detailed information about the top 10 web
                     application security risks.</p>
-                <a href="#" class="text-primary font-medium hover:underline">Explore Risks →</a>
+                <router-link to="/docs/owasp-top-10" class="text-primary font-medium hover:underline">Explore Risks
+                    →</router-link>
             </div>
 
             <div
@@ -52,7 +54,8 @@
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Secure Coding</h3>
                 <p class="text-slate-600 text-white mb-4">Best practices and code examples for writing secure
                     applications.</p>
-                <a href="#" class="text-primary font-medium hover:underline">View Examples →</a>
+                <router-link to="/docs/secure-coding" class="text-primary font-medium hover:underline">View Examples
+                    →</router-link>
             </div>
 
             <div
@@ -63,7 +66,8 @@
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">API Security</h3>
                 <p class="text-slate-600 text-white mb-4">Protect your APIs from common vulnerabilities and
                     attacks.</p>
-                <a href="#" class="text-primary font-medium hover:underline">Learn More →</a>
+                <router-link to="/docs/api-security" class="text-primary font-medium hover:underline">Learn More
+                    →</router-link>
             </div>
 
             <div
@@ -74,7 +78,8 @@
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Authentication</h3>
                 <p class="text-slate-600 text-white mb-4">Implement secure authentication and authorization
                     mechanisms.</p>
-                <a href="#" class="text-primary font-medium hover:underline">Read Guide →</a>
+                <router-link to="/docs/authentication" class="text-primary font-medium hover:underline">Read Guide
+                    →</router-link>
             </div>
 
             <div
@@ -85,7 +90,7 @@
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">FAQ & Support</h3>
                 <p class="text-slate-600 text-white mb-4">Answers to common questions and support resources.
                 </p>
-                <a href="#" class="text-primary font-medium hover:underline">Get Help →</a>
+                <router-link to="/docs/faq" class="text-primary font-medium hover:underline">Get Help →</router-link>
             </div>
         </div>
     </main>

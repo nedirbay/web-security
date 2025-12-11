@@ -15,7 +15,7 @@ const router = createRouter({
           component: HomeView, // Layout-yň içindäki <router-view>-da açylar
         },
         {
-          path: 'detail',
+          path: 'detail/:id',
           name: 'detail',
           component: () => import('../views/DetailView.vue'),
         },
@@ -23,6 +23,36 @@ const router = createRouter({
           path: 'docs',
           name: 'docs',
           component: () => import('../views/DocsView.vue'),
+        },
+        {
+          path: 'docs/getting-started',
+          name: 'getting-started',
+          component: () => import('../views/docs/GettingStartedView.vue'),
+        },
+        {
+          path: 'docs/owasp-top-10',
+          name: 'owasp-top-10',
+          component: () => import('../views/docs/OWASPTop10View.vue'),
+        },
+        {
+          path: 'docs/secure-coding',
+          name: 'secure-coding',
+          component: () => import('../views/docs/SecureCodingView.vue'),
+        },
+        {
+          path: 'docs/api-security',
+          name: 'api-security',
+          component: () => import('../views/docs/APISecurityView.vue'),
+        },
+        {
+          path: 'docs/authentication',
+          name: 'authentication',
+          component: () => import('../views/docs/AuthenticationView.vue'),
+        },
+        {
+          path: 'docs/faq',
+          name: 'faq',
+          component: () => import('../views/docs/FAQView.vue'),
         },
       ],
     },
