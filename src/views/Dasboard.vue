@@ -5,28 +5,28 @@
             <section class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
                 <div
                     class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                    <p class="text-slate-400 text-sm font-medium leading-normal">Total Open Alerts</p>
+                    <p class="text-slate-400 text-sm font-medium leading-normal">Jemi açyk duýduryşlar</p>
                     <p class="text-white tracking-light text-3xl font-bold leading-tight">1,204</p>
                     <p class="text-success text-sm font-medium leading-normal flex items-center"><span
                             class="material-symbols-outlined text-base mr-1">arrow_upward</span>5.2%</p>
                 </div>
                 <div
                     class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                    <p class="text-slate-400 text-sm font-medium leading-normal">Apps Scanned</p>
+                    <p class="text-slate-400 text-sm font-medium leading-normal">Barlanan programmalar</p>
                     <p class="text-white tracking-light text-3xl font-bold leading-tight">86</p>
                     <p class="text-critical text-sm font-medium leading-normal flex items-center"><span
                             class="material-symbols-outlined text-base mr-1">arrow_downward</span>1.0%</p>
                 </div>
                 <div
                     class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                    <p class="text-slate-400 text-sm font-medium leading-normal">High-Severity Findings</p>
+                    <p class="text-slate-400 text-sm font-medium leading-normal">Ýokary derejeli tapyndylar</p>
                     <p class="text-white tracking-light text-3xl font-bold leading-tight">79</p>
                     <p class="text-success text-sm font-medium leading-normal flex items-center"><span
                             class="material-symbols-outlined text-base mr-1">arrow_upward</span>12%</p>
                 </div>
                 <div
                     class="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                    <p class="text-slate-400 text-sm font-medium leading-normal">Scans in Last 7 Days</p>
+                    <p class="text-slate-400 text-sm font-medium leading-normal">Soňky 7 gündäki barlaglar</p>
                     <p class="text-white tracking-light text-3xl font-bold leading-tight">215</p>
                     <p class="text-success text-sm font-medium leading-normal flex items-center"><span
                             class="material-symbols-outlined text-base mr-1">arrow_upward</span>8.5%</p>
@@ -38,10 +38,10 @@
                     <!-- Chart -->
                     <section
                         class="flex min-w-72 flex-1 flex-col gap-4 rounded-xl border border-white/5 p-6 bg-[#1e2329] shadow-sm">
-                        <p class="text-white text-base font-semibold leading-normal">Vulnerabilities by Severity
+                        <p class="text-white text-base font-semibold leading-normal">Howplaryň derejesine görä paýlanyşy
                         </p>
                         <div class="flex gap-1">
-                            <p class="text-slate-400 text-sm font-normal leading-normal">Last 30 Days</p>
+                            <p class="text-slate-400 text-sm font-normal leading-normal">Soňky 30 gün</p>
                             <p class="text-success text-sm font-medium leading-normal">+15.3%</p>
                         </div>
                         <div class="flex flex-col md:flex-row items-center gap-6">
@@ -61,29 +61,29 @@
                                 </svg>
                                 <div class="absolute inset-0 flex flex-col items-center justify-center">
                                     <span class="text-3xl font-bold text-white">1,204</span>
-                                    <span class="text-sm text-slate-400">Total</span>
+                                    <span class="text-sm text-slate-400">Jemi</span>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 md:grid-cols-1 gap-x-6 gap-y-4">
                                 <div class="flex items-center gap-2">
                                     <div class="size-3 rounded-full bg-critical"></div><span
-                                        class="text-sm text-slate-300">Critical</span>
+                                        class="text-sm text-slate-300">Kritiki</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="size-3 rounded-full bg-high"></div><span
-                                        class="text-sm text-slate-300">High</span>
+                                        class="text-sm text-slate-300">Ýokary</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="size-3 rounded-full bg-medium"></div><span
-                                        class="text-sm text-slate-300">Medium</span>
+                                        class="text-sm text-slate-300">Orta</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="size-3 rounded-full bg-low"></div><span
-                                        class="text-sm text-slate-300">Low</span>
+                                        class="text-sm text-slate-300">Pes</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="size-3 rounded-full bg-info"></div><span
-                                        class="text-sm text-slate-300">Informational</span>
+                                        class="text-sm text-slate-300">Maglumat beriji</span>
                                 </div>
                             </div>
                         </div>
@@ -91,15 +91,15 @@
                     <!-- Recent Scans -->
                     <section>
                         <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Recent
-                            Scan Activity</h2>
+                            Scan hereketleri</h2>
                         <div class="overflow-x-auto rounded-xl border border-white/5 bg-[#1e2329] shadow-sm">
                             <table class="w-full text-left text-sm">
                                 <thead class="border-b border-white/5 text-xs uppercase text-slate-400 bg-white/5">
                                     <tr>
-                                        <th class="px-6 py-3" scope="col">Target Name</th>
-                                        <th class="px-6 py-3" scope="col">Status</th>
-                                        <th class="px-6 py-3" scope="col">Date</th>
-                                        <th class="px-6 py-3" scope="col">Findings</th>
+                                        <th class="px-6 py-3" scope="col">Nyşana ady</th>
+                                        <th class="px-6 py-3" scope="col">Ýagdaýy</th>
+                                        <th class="px-6 py-3" scope="col">Sene</th>
+                                        <th class="px-6 py-3" scope="col">Tapyndylar</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-white/5">
@@ -107,38 +107,38 @@
                                         <td class="px-6 py-4 font-medium text-white">WebApp-Production</td>
                                         <td class="px-6 py-4"><span
                                                 class="inline-flex items-center rounded-full bg-success/20 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20">
-                                                <div class="size-2 rounded-full bg-success mr-2"></div>Completed
+                                                <div class="size-2 rounded-full bg-success mr-2"></div>Tamamlandy
                                             </span></td>
-                                        <td class="px-6 py-4 text-slate-400">2 hours ago</td>
-                                        <td class="px-6 py-4 text-slate-300">5 High, 12 Medium</td>
+                                        <td class="px-6 py-4 text-slate-400">2 sagat öň</td>
+                                        <td class="px-6 py-4 text-slate-300">5 Ýokary, 12 Orta</td>
                                     </tr>
                                     <tr class="hover:bg-white/5 cursor-pointer transition-colors">
                                         <td class="px-6 py-4 font-medium text-white">Internal-API</td>
                                         <td class="px-6 py-4"><span
                                                 class="inline-flex items-center rounded-full bg-primary/20 px-2.5 py-0.5 text-xs font-medium text-primary border border-primary/20">
                                                 <div class="size-2 rounded-full bg-primary mr-2 animate-pulse">
-                                                </div>In Progress
+                                                </div>Dowam edýär
                                             </span></td>
-                                        <td class="px-6 py-4 text-slate-400">1 day ago</td>
+                                        <td class="px-6 py-4 text-slate-400">1 gün öň</td>
                                         <td class="px-6 py-4 text-slate-300">--</td>
                                     </tr>
                                     <tr class="hover:bg-white/5 cursor-pointer transition-colors">
                                         <td class="px-6 py-4 font-medium text-white">Staging-Frontend</td>
                                         <td class="px-6 py-4"><span
                                                 class="inline-flex items-center rounded-full bg-critical/20 px-2.5 py-0.5 text-xs font-medium text-critical border border-critical/20">
-                                                <div class="size-2 rounded-full bg-critical mr-2"></div>Failed
+                                                <div class="size-2 rounded-full bg-critical mr-2"></div>Şowsuz
                                             </span></td>
-                                        <td class="px-6 py-4 text-slate-400">3 days ago</td>
+                                        <td class="px-6 py-4 text-slate-400">3 gün öň</td>
                                         <td class="px-6 py-4 text-slate-300">N/A</td>
                                     </tr>
                                     <tr class="hover:bg-white/5 cursor-pointer transition-colors">
                                         <td class="px-6 py-4 font-medium text-white">Auth-Service</td>
                                         <td class="px-6 py-4"><span
                                                 class="inline-flex items-center rounded-full bg-success/20 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20">
-                                                <div class="size-2 rounded-full bg-success mr-2"></div>Completed
+                                                <div class="size-2 rounded-full bg-success mr-2"></div>Tamamlandy
                                             </span></td>
-                                        <td class="px-6 py-4 text-slate-400">5 days ago</td>
-                                        <td class="px-6 py-4 text-slate-300">1 Critical, 8 Medium</td>
+                                        <td class="px-6 py-4 text-slate-400">5 gün öň</td>
+                                        <td class="px-6 py-4 text-slate-300">1 Kritiki, 8 Orta</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -148,22 +148,22 @@
                 <!-- Quick Actions -->
                 <div class="lg:col-span-1">
                     <section class="rounded-xl border border-white/5 p-6 bg-[#1e2329] shadow-sm">
-                        <h2 class="text-white text-base font-semibold leading-tight pb-4">Quick Actions</h2>
+                        <h2 class="text-white text-base font-semibold leading-tight pb-4">Çalt hereketler</h2>
                         <div class="flex flex-col gap-4">
                             <button
                                 class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
                                 <span class="material-symbols-outlined text-xl">add</span>
-                                <span>Start New Scan</span>
+                                <span>Täze barlagy başlat</span>
                             </button>
                             <button
                                 class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/5 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/10 transition-all border border-white/10">
                                 <span class="material-symbols-outlined text-xl">add_circle</span>
-                                <span>Add New Target</span>
+                                <span>Täze nyşana goş</span>
                             </button>
                             <button
                                 class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-white/5 text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/10 transition-all border border-white/10">
                                 <span class="material-symbols-outlined text-xl">assessment</span>
-                                <span>Generate Report</span>
+                                <span>Hasabat döret</span>
                             </button>
                         </div>
                     </section>

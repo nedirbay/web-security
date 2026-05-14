@@ -7,11 +7,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            Authentication
+                            Tassyklama
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Securing user identity and access.
+                            Ulanyjy şahsyýetini we girişini goramak.
                         </h2>
                     </div>
                 </div>
@@ -19,19 +19,17 @@
         </div>
         <div class="px-4 sm:px-10 max-w-4xl mx-auto w-full">
             <article class="prose prose-invert max-w-none text-white">
-                <h3>Multi-Factor Authentication (MFA)</h3>
-                <p>Enable MFA to add an extra layer of security. This drastically reduces the risk of account
-                    compromise.</p>
+                <h3>Köp basgançakly tassyklama (MFA)</h3>
+                <p>Goşmaça howpsuzlyk gatlagyny goşmak üçin MFA-ny işjeňleşdiriň. Bu hasabyň ele geçirilme töwekgelçiligini düýpli azaldýar.</p>
 
-                <h3>Session Management</h3>
-                <p>Use secure, HttpOnly, and SameSite cookies for session management. Invalidate sessions on logout and
-                    after a timeout period.</p>
+                <h3>Sessiýalary dolandyrmak</h3>
+                <p>Sessiýalary dolandyrmak üçin secure, HttpOnly we SameSite kukilerini ulanyň. Ulgamdan çykylanda we belli bir wagtdan soň sessiýalary ýatyryň.</p>
 
-                <h3>Password Policies</h3>
-                <p>Enforce strong password policies. Check against known breached password lists.</p>
+                <h3>Parol syýasatlary</h3>
+                <p>Güýçli parol syýasatlaryny giriziň. Mälim bolan ele geçirilen parollar sanawyna garşy barlaň.</p>
             </article>
             <div class="mt-8">
-                <router-link to="/docs" class="text-primary hover:underline">← Back to Documentation</router-link>
+                <router-link to="/docs" class="text-primary hover:underline">← Dokumentasiýa dolan</router-link>
             </div>
         </div>
     </main>

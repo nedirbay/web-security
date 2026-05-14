@@ -5,43 +5,41 @@
                 <div class="flex flex-wrap justify-between gap-3 p-4">
                     <div class="flex min-w-72 flex-col gap-3">
                         <p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">
-                            Start a New Security Scan</p>
-                        <p class="text-slate-400 text-base font-normal leading-normal">Enter a
-                            website URL to identify potential vulnerabilities.</p>
+                            Täze howpsuzlyk barlagyny başlat</p>
+                        <p class="text-slate-400 text-base font-normal leading-normal">Ähtimal bolan gowşaklyklary anyklamak üçin web sahypasynyň URL-ni giriziň.</p>
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row items-end gap-4 px-4 py-3">
                     <label class="flex flex-col min-w-40 flex-1">
                         <p class="text-white text-base font-medium leading-normal pb-2">Enter
-                            Website URL</p>
+                            Web sahypasynyň URL-ni giriziň</p>
                         <input
                             class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-white/10 bg-[#1e2329] focus:border-primary h-14 placeholder:text-slate-500 p-[15px] text-base font-normal leading-normal transition-all shadow-sm"
                             placeholder="https://example.com" v-model="scanUrl" :disabled="isScanning" />
                     </label>
                     <button @click="startScan()" :disabled="isScanning"
                         class="flex min-w-[84px] w-full border border-white/10 md:w-auto max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed">
-                        <span class="truncate">{{ isScanning ? 'Scanning...' : 'Scan Now' }}</span>
+                        <span class="truncate">{{ isScanning ? 'Barlanylýar...' : 'Häzir barla' }}</span>
                     </button>
                 </div>
 
                 <!-- Progress Bar -->
                 <div v-if="isScanning" class="w-full px-4 pt-4">
                     <div class="mb-1 flex justify-between">
-                        <span class="text-sm font-medium text-white">Scanning in progress...</span>
+                        <span class="text-sm font-medium text-white">Barlag dowam edýär...</span>
                         <span class="text-sm font-medium text-white">{{ progress }}%</span>
                     </div>
                     <div class="h-2.5 w-full rounded-full bg-[#1e2329] border border-white/10">
                         <div class="h-2.5 rounded-full bg-primary transition-all duration-300 ease-out"
                             :style="{ width: progress + '%' }"></div>
                     </div>
-                    <p class="mt-2 text-xs text-slate-400">Please wait, this may take a few minutes depending on the
-                        target website side.</p>
+                    <p class="mt-2 text-xs text-slate-400">Garaşmagyňyzy haýyş edýäris, bu nyşana web sahypasyna baglylykda birnäçe minut alyp biler.</p>
                 </div>
 
                 <!-- Advanced Options Toggle -->
                 <p @click="showAdvancedOptions = !showAdvancedOptions"
                     class="text-slate-400 text-sm font-normal leading-normal pb-3 pt-1 px-4 underline cursor-pointer hover:text-primary transition-colors select-none w-fit">
-                    Advanced Options
+                    Giňişleýin sazlamalar
                     <span class="ml-1 text-xs">{{ showAdvancedOptions ? '▲' : '▼' }}</span>
                 </p>
 
@@ -55,12 +53,12 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <!-- Scan Depth -->
                             <label class="flex flex-col">
-                                <span class="text-white text-sm font-medium mb-2">Scan Depth</span>
+                                <span class="text-white text-sm font-medium mb-2">Barlag çuňlugy</span>
                                 <select
                                     class="form-select w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none">
-                                    <option value="quick">Quick Scan</option>
-                                    <option value="standard">Standard Scan</option>
-                                    <option value="deep">Deep Scan</option>
+                                    <option value="quick">Çalt barlag</option>
+                                    <option value="standard">Standart barlag</option>
+                                    <option value="deep">Çuňňur barlag</option>
                                 </select>
                             </label>
 
@@ -74,14 +72,14 @@
 
                             <!-- Concurrent Threads -->
                             <label class="flex flex-col">
-                                <span class="text-white text-sm font-medium mb-2">Concurrent Threads</span>
+                                <span class="text-white text-sm font-medium mb-2">Paralel akymlar</span>
                                 <input type="number" min="1" max="100" value="10"
                                     class="form-input w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                             </label>
 
                             <!-- Request Timeout -->
                             <label class="flex flex-col">
-                                <span class="text-white text-sm font-medium mb-2">Request Timeout (ms)</span>
+                                <span class="text-white text-sm font-medium mb-2">Garaşma wagty (ms)</span>
                                 <input type="number" min="1000" step="500" value="5000"
                                     class="form-input w-full rounded-lg bg-[#2d333b] border border-white/10 text-white p-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
                             </label>
@@ -89,22 +87,22 @@
 
                         <!-- Checkboxes for specific options -->
                         <div class="flex flex-col space-y-3 pt-2">
-                            <span class="text-white text-sm font-medium">Additional Flags</span>
+                            <span class="text-white text-sm font-medium">Goşmaça baýdaklar</span>
                             <div class="flex flex-wrap gap-4">
                                 <label class="inline-flex items-center cursor-pointer">
                                     <input type="checkbox"
                                         class="form-checkbox text-primary rounded bg-[#2d333b] border-white/10" />
-                                    <span class="ml-2 text-slate-300 text-sm">Follow Redirects</span>
+                                    <span class="ml-2 text-slate-300 text-sm">Ugrukdyrmalary yzarla</span>
                                 </label>
                                 <label class="inline-flex items-center cursor-pointer">
                                     <input type="checkbox"
                                         class="form-checkbox text-primary rounded bg-[#2d333b] border-white/10" />
-                                    <span class="ml-2 text-slate-300 text-sm">Ignore SSL Errors</span>
+                                    <span class="ml-2 text-slate-300 text-sm">SSL ýalňyşlyklaryna biperwaý gara</span>
                                 </label>
                                 <label class="inline-flex items-center cursor-pointer">
                                     <input type="checkbox"
                                         class="form-checkbox text-primary rounded bg-[#2d333b] border-white/10" />
-                                    <span class="ml-2 text-slate-300 text-sm">Scan Subdomains</span>
+                                    <span class="ml-2 text-slate-300 text-sm">Subdomenleri barla</span>
                                 </label>
                             </div>
                         </div>
@@ -113,43 +111,43 @@
 
             </section>
             <section v-if="scanResults" class="w-full py-8 md:py-12 border-t border-white/5">
-                <h3 class="text-2xl font-bold text-white px-4 mb-2">Scan Results for {{ scanResults.target }}
+                <h3 class="text-2xl font-bold text-white px-4 mb-2">Barlag netijeleri: {{ scanResults.target }}
                 </h3>
-                <p class="text-slate-400 px-4 mb-6">Total Alerts Found: {{ scanResults.total_alerts }}</p>
+                <p class="text-slate-400 px-4 mb-6">Tapylan jemi duýduryşlar: {{ scanResults.total_alerts }}</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
                     <div
                         class="p-6 rounded-xl bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="font-semibold text-red-500">Critical Risks</h4>
+                        <h4 class="font-semibold text-red-500">Kritiki töwekgelçilikler</h4>
                         <p class="text-5xl font-black text-white mt-2">{{ countRisks('Critical') }}</p>
                     </div>
                     <div
                         class="p-6 rounded-xl bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="font-semibold text-orange-500">High Risks</h4>
+                        <h4 class="font-semibold text-orange-500">Ýokary töwekgelçilikler</h4>
                         <p class="text-5xl font-black text-white mt-2">{{ countRisks('High') }}</p>
                     </div>
                     <div
                         class="p-6 rounded-xl bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="font-semibold text-yellow-400">Medium Risks</h4>
+                        <h4 class="font-semibold text-yellow-400">Orta töwekgelçilikler</h4>
                         <p class="text-5xl font-black text-white mt-2">{{ countRisks('Medium') }}</p>
                     </div>
                     <div
                         class="p-6 rounded-xl bg-[#1e2329] border border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="font-semibold text-blue-500">Low Risks</h4>
+                        <h4 class="font-semibold text-blue-500">Pes töwekgelçilikler</h4>
                         <p class="text-5xl font-black text-white mt-2">{{ countRisks('Low') }}</p>
                     </div>
                 </div>
                 <div class="p-4 mt-8">
-                    <h3 class="text-2xl font-bold text-white mb-6">Identified Vulnerabilities
+                    <h3 class="text-2xl font-bold text-white mb-6">Anyklanan gowşaklyklar
                     </h3>
                     <div class="overflow-x-auto bg-[#1e2329] rounded-xl border border-white/5 shadow-sm">
                         <table class="w-full text-left text-sm">
                             <thead class="text-xs text-slate-400 uppercase bg-white/5 border-b border-white/5">
                                 <tr>
-                                    <th class="px-6 py-4" scope="col">Risk</th>
-                                    <th class="px-6 py-4" scope="col">Alert</th>
+                                    <th class="px-6 py-4" scope="col">Töwekgelçilik</th>
+                                    <th class="px-6 py-4" scope="col">Duýduryş</th>
                                     <th class="px-6 py-4" scope="col">URL</th>
-                                    <th class="px-6 py-4" scope="col">Confidence</th>
-                                    <th class="px-6 py-4" scope="col">Actions</th>
+                                    <th class="px-6 py-4" scope="col">Ynamlylyk</th>
+                                    <th class="px-6 py-4" scope="col">Hereketler</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-white/5">
@@ -168,13 +166,13 @@
                                     <td class="px-6 py-4">
                                         <button @click="openDetails(alert)"
                                             class="font-medium text-primary hover:underline">
-                                            View Details
+                                            Jikme-jiklikleri gör
                                         </button>
                                     </td>
                                 </tr>
                                 <tr v-if="paginatedAlerts.length === 0">
                                     <td colspan="5" class="px-6 py-8 text-center text-slate-400">
-                                        No vulnerabilities found or passive scan returned no alerts.
+                                        Gowşaklyk tapylmady ýa-da passiw barlag netije bermedi.
                                     </td>
                                 </tr>
                             </tbody>
@@ -190,7 +188,7 @@
                         </button>
 
                         <div class="flex items-center gap-2 px-4">
-                            <span class="text-sm text-slate-400">Page {{ currentPage }} of {{ totalPages }}</span>
+                            <span class="text-sm text-slate-400">Sahypa {{ currentPage }} dan {{ totalPages }}</span>
                         </div>
 
                         <button
@@ -226,21 +224,21 @@
                                     </h3>
                                     <div class="mt-4 space-y-4">
                                         <div>
-                                            <h4 class="text-sm font-bold text-slate-300">Description</h4>
+                                            <h4 class="text-sm font-bold text-slate-300">Düşündiriş</h4>
                                             <p class="text-sm text-slate-400 mt-1 whitespace-pre-wrap">{{
                                                 selectedAlert.description }}</p>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-slate-300">Solution</h4>
+                                            <h4 class="text-sm font-bold text-slate-300">Çözgüt</h4>
                                             <p class="text-sm text-slate-400 mt-1 whitespace-pre-wrap">{{
                                                 selectedAlert.solution }}</p>
                                         </div>
                                         <div>
-                                            <h4 class="text-sm font-bold text-slate-300">Detailed Risk Info</h4>
+                                            <h4 class="text-sm font-bold text-slate-300">Töwekgelçilik barada jikme-jik maglumat</h4>
                                             <div class="grid grid-cols-2 gap-2 mt-2 text-sm">
-                                                <p class="text-slate-400">Risk: <span class="text-white">{{
+                                                <p class="text-slate-400">Töwekgelçilik: <span class="text-white">{{
                                                         selectedAlert.risk }}</span></p>
-                                                <p class="text-slate-400">Confidence: <span class="text-white">{{
+                                                <p class="text-slate-400">Ynamlylyk: <span class="text-white">{{
                                                         selectedAlert.confidence }}</span></p>
                                                 <p class="col-span-2 text-slate-400">URL: <span
                                                         class="text-white break-all">{{ selectedAlert.url }}</span></p>
@@ -254,7 +252,7 @@
                             <button type="button"
                                 class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"
                                 @click="selectedAlert = null">
-                                Close
+                                Ýap
                             </button>
                         </div>
                     </div>
@@ -309,7 +307,7 @@ const openDetails = (alert: any) => {
 
 const startScan = () => {
     if (!scanUrl.value) {
-        alert("Please enter a URL.");
+        alert("URL giriziň.");
         return;
     }
 
@@ -339,7 +337,7 @@ const startScan = () => {
             progress.value = 0;
             isScanning.value = false;
             console.error(error);
-            alert("Scan failed. Please check the URL and try again.");
+            alert("Barlag şowsuz boldy. URL-i barlaň we täzeden synanyşyň.");
         });
 }
 

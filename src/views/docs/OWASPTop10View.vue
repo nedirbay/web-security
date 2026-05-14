@@ -11,7 +11,7 @@
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Understanding the most critical web application security risks.
+                            Iň möhüm web goşundylarynyň howpsuzlyk töwekgelçiliklerine düşünmek.
                         </h2>
                     </div>
                 </div>
@@ -19,25 +19,20 @@
         </div>
         <div class="px-4 sm:px-10 max-w-4xl mx-auto w-full">
             <article class="prose prose-invert max-w-none text-white">
-                <p>The OWASP Top 10 is a standard awareness document for developers and web application security. It
-                    represents a broad consensus about the most critical security risks to web applications.</p>
+                <p>OWASP Top 10 - bu programmaçylar we web goşundylarynyň howpsuzlygy üçin standart düşündiriş resminamasydyr. Ol web goşundylary üçin iň möhüm howpsuzlyk töwekgelçilikleri baradaky umumy ylalaşygy görkezýär.</p>
 
-                <h3>The List</h3>
+                <h3>Sanaw</h3>
                 <ul>
-                    <li><strong>A01:2021-Broken Access Control:</strong> Restrictions on what authenticated users are
-                        allowed to do are often not properly enforced.</li>
-                    <li><strong>A02:2021-Cryptographic Failures:</strong> Focuses on failures related to cryptography
-                        which often leads to sensitive data exposure or system compromise.</li>
-                    <li><strong>A03:2021-Injection:</strong> User-supplied data is not validated, filtered, or sanitized
-                        by the application.</li>
-                    <li><strong>A04:2021-Insecure Design:</strong> Focuses on risks related to design flaws.</li>
-                    <li><strong>A05:2021-Security Misconfiguration:</strong> Security settings are defined, implemented,
-                        and maintained with defaults.</li>
+                    <li><strong>A01:2021-Giriş gözegçiliginiň bozulmagy:</strong> Ulgama giren ulanyjylara näme etmäge rugsat berilýändigi baradaky çäklendirmeler köplenç dogry ýerine ýetirilmeýär.</li>
+                    <li><strong>A02:2021-Kriptografik şowsuzlyklar:</strong> Kriptografiýa bilen baglanyşykly şowsuzlyklara ünsi çekýär, bu bolsa köplenç duýgur maglumatlaryň paş edilmegine ýa-da ulgamyň howpsuzlygynyň bozulmagyna sebäp bolýar.</li>
+                    <li><strong>A03:2021-Inýeksiýa:</strong> Ulanyjy tarapyndan berlen maglumatlar programma tarapyndan barlanmaýar, süzülmeýär ýa-da arassalanmaýar.</li>
+                    <li><strong>A04:2021-Howpsuz däl dizaýn:</strong> Dizaýndaky kemçilikler bilen baglanyşykly töwekgelçiliklere ünsi çekýär.</li>
+                    <li><strong>A05:2021-Howpsuzlyk sazlamalarynyň nädogrylygy:</strong> Howpsuzlyk sazlamalary kesgitlenende, durmuşa geçirilende we goldanylanda standart görnüşde galdyrylýar.</li>
                     <!-- Add more as needed -->
                 </ul>
             </article>
             <div class="mt-8">
-                <router-link to="/docs" class="text-primary hover:underline">← Back to Documentation</router-link>
+                <router-link to="/docs" class="text-primary hover:underline">← Dokumentasiýa dolan</router-link>
             </div>
         </div>
     </main>

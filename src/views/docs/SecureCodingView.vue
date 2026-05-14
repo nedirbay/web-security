@@ -7,11 +7,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            Secure Coding
+                            Howpsuz programmalama
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Best practices for writing secure code.
+                            Howpsuz kod ýazmak üçin iň gowy tejribeler.
                         </h2>
                     </div>
                 </div>
@@ -19,23 +19,20 @@
         </div>
         <div class="px-4 sm:px-10 max-w-4xl mx-auto w-full">
             <article class="prose prose-invert max-w-none text-white">
-                <h3>Input Validation</h3>
-                <p>Always validate input from all sources. Do not trust user input. Use allow-listing (positive
-                    validation) where possible.</p>
+                <h3>Giriş maglumatlaryny barlamak</h3>
+                <p>Ähli çeşmelerden gelýän giriş maglumatlaryny elmydama barlaň. Ulanyjy girişine ynanmaň. Mümkin bolan ýerinde ak sanawy (pozitiw barlag) ulanyň.</p>
 
-                <h3>Output Encoding</h3>
-                <p>Encode data before writing it to an output stream to prevent injection attacks like XSS.</p>
+                <h3>Çykyş maglumatlaryny kodlamak</h3>
+                <p>XSS ýaly inýeksiýa hüjümleriniň öňüni almak üçin maglumatlary çykyş akymyna ýazmazdan ozal kodlaň.</p>
 
-                <h3>Authentication & Password Management</h3>
-                <p>Use strong password hashing algorithms like Argon2 or bcrypt. Enforce password complexity
-                    requirements.</p>
+                <h3>Tassyklama we parollary dolandyrmak</h3>
+                <p>Argon2 ýa-da bcrypt ýaly güýçli parol heşleme algoritmlerini ulanyň. Parol çylşyrymlylygy baradaky talaplary giriziň.</p>
 
-                <h3>Error Handling</h3>
-                <p>Do not expose sensitive information in error messages. Log detailed errors on the server but show
-                    generic messages to users.</p>
+                <h3>Ýalňyşlyklary dolandyrmak</h3>
+                <p>Ýalňyşlyk habarlarynda duýgur maglumatlary paş etmäň. Jikme-jik ýalňyşlyklary serwerde bellige alyň, ýöne ulanyjylara umumy habarlary görkeziň.</p>
             </article>
             <div class="mt-8">
-                <router-link to="/docs" class="text-primary hover:underline">← Back to Documentation</router-link>
+                <router-link to="/docs" class="text-primary hover:underline">← Dokumentasiýa dolan</router-link>
             </div>
         </div>
     </main>

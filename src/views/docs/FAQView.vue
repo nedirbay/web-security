@@ -7,11 +7,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            FAQ & Support
+                            Köp berilýän soraglar we Goldaw
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Common questions and getting help.
+                            Umumy soraglar we kömek almak.
                         </h2>
                     </div>
                 </div>
@@ -19,17 +19,17 @@
         </div>
         <div class="px-4 sm:px-10 max-w-4xl mx-auto w-full">
             <article class="prose prose-invert max-w-none text-white">
-                <h3>How do I reset my password?</h3>
-                <p>You can reset your password by clicking on the "Forgot Password" link on the login page.</p>
+                <h3>Parolymy nädip täzelemeli?</h3>
+                <p>Giriş sahypasyndaky "Paroly ýatdan çykardym" ssylkasyna basyp, parolyňyzy täzeläp bilersiňiz.</p>
 
-                <h3>How often should I scan my application?</h3>
-                <p>We recommend scanning your application after every major deployment or at least once a week.</p>
+                <h3>Programmamy näçe wagtda bir gezek barlamaly?</h3>
+                <p>Programmaňyzy her bir esasy üýtgeşmeden soň ýa-da azyndan hepdede bir gezek barlamagy maslahat berýäris.</p>
 
-                <h3>Who do I contact for support?</h3>
-                <p>You can reach our support team at support@example.com or use the contact form in the dashboard.</p>
+                <h3>Goldaw üçin kim bilen habarlaşmaly?</h3>
+                <p>Goldaw toparymyz bilen support@example.com arkaly habarlaşyp bilersiňiz ýa-da paneldäki habarlaşmak formasyny ulanyp bilersiňiz.</p>
             </article>
             <div class="mt-8">
-                <router-link to="/docs" class="text-primary hover:underline">← Back to Documentation</router-link>
+                <router-link to="/docs" class="text-primary hover:underline">← Dokumentasiýa dolan</router-link>
             </div>
         </div>
     </main>

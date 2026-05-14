@@ -4,9 +4,8 @@
             <!-- PageHeading -->
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div class="flex min-w-72 flex-col gap-2">
-                    <p class="text-white text-3xl font-bold tracking-tight">Scan History</p>
-                    <p class="text-slate-400 text-base font-normal leading-normal">View a
-                        chronological log of all security scans.</p>
+                    <p class="text-white text-3xl font-bold tracking-tight">Barlag taryhy</p>
+                    <p class="text-slate-400 text-base font-normal leading-normal">Ähli howpsuzlyk barlaglarynyň hronologiki logyna serediň.</p>
                 </div>
             </div>
             <!-- Filters -->
@@ -17,16 +16,16 @@
                     </div>
                     <input v-model="searchQuery" @input="filterScans"
                         class="w-full rounded-lg border-white/10 bg-[#1e2329] py-2 pl-10 pr-4 text-sm text-white focus:border-primary focus:ring-primary placeholder-slate-400 shadow-sm"
-                        placeholder="Search by target URL..." type="text" />
+                        placeholder="Nyşana URL boýunça gözläň..." type="text" />
                 </div>
                 <div class="flex flex-wrap gap-2">
                     <div class="relative">
                         <select v-model="statusFilter" @change="filterScans"
                             class="appearance-none h-9 pl-3 pr-8 rounded-lg border border-white/10 bg-[#1e2329] text-white text-sm font-medium focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer hover:bg-white/5 transition-colors">
-                            <option value="">Status: All</option>
-                            <option value="COMPLETED">Completed</option>
-                            <option value="RUNNING">Running</option>
-                            <option value="FAILED">Failed</option>
+                            <option value="">Ýagdaýy: Ählisi</option>
+                            <option value="COMPLETED">Tamamlandy</option>
+                            <option value="RUNNING">Dowam edýär</option>
+                            <option value="FAILED">Şowsuz</option>
                         </select>
                         <div
                             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
@@ -36,7 +35,7 @@
                     <button
                         class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg border border-white/10 bg-[#1e2329] px-3 text-white hover:bg-white/5 transition-colors shadow-sm">
                         <span class="material-symbols-outlined text-base">calendar_today</span>
-                        <p class="text-sm font-medium leading-normal">Date Range</p>
+                        <p class="text-sm font-medium leading-normal">Sene aralygy</p>
                     </button>
                 </div>
             </div>
@@ -49,15 +48,15 @@
                                 <thead class="bg-[#1e2329]">
                                     <tr>
                                         <th class="px-4 py-3.5 text-left text-sm font-semibold text-white" scope="col">
-                                            Scan Date</th>
+                                            Barlag senesi</th>
                                         <th class="px-3 py-3.5 text-left text-sm font-semibold text-white" scope="col">
-                                            Target URL</th>
+                                            Nyşana URL</th>
                                         <th class="px-3 py-3.5 text-left text-sm font-semibold text-white" scope="col">
-                                            Status</th>
+                                            Ýagdaýy</th>
                                         <th class="px-3 py-3.5 text-left text-sm font-semibold text-white" scope="col">
-                                            Vulnerabilities</th>
+                                            Gowşaklyklar</th>
                                         <th class="px-3 py-3.5 text-left text-sm font-semibold text-white" scope="col">
-                                            Duration</th>
+                                            Dowamlylygy</th>
                                         <th class="relative py-3.5 pl-3 pr-4 sm:pr-6" scope="col"><span
                                                 class="sr-only">Actions</span></th>
                                     </tr>
@@ -79,22 +78,22 @@
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-400">
                                             <!-- We might not have count summary in the list API, showing 'View Report' -->
-                                            Click report to see details
+                                            Jikme-jiklikleri görmek üçin hasabata basyň
                                         </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-slate-400">
                                             <!-- Duration calculation if start/end exists -->
-                                            {{ scan.end_time ? 'Completed' : 'Running' }}
+                                            {{ scan.end_time ? 'Tamamlandy' : 'Dowam edýär' }}
                                         </td>
                                         <td
                                             class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             <button @click="viewReport(scan)"
                                                 class="text-primary hover:text-primary/80 transition-colors">
-                                                View Report
+                                                Hasabaty gör
                                             </button>
                                         </td>
                                     </tr>
                                     <tr v-if="filteredScans.length === 0">
-                                        <td colspan="6" class="px-6 py-8 text-center text-slate-400">No scans found.
+                                        <td colspan="6" class="px-6 py-8 text-center text-slate-400">Barlag tapylmady.
                                         </td>
                                     </tr>
                                 </tbody>
@@ -108,20 +107,20 @@
                 class="mt-6 flex items-center justify-between border-t border-white/10 px-4 py-3 sm:px-6">
                 <div class="hidden sm:block">
                     <p class="text-sm text-slate-400">
-                        Showing <span class="font-medium text-white">{{ (currentPage - 1) * itemsPerPage + 1 }}</span>
-                        to <span class="font-medium text-white">{{ Math.min(currentPage * itemsPerPage,
-                            filteredScans.length) }}</span> of <span class="font-medium text-white">{{
+                        Görkezilýär <span class="font-medium text-white">{{ (currentPage - 1) * itemsPerPage + 1 }}</span>
+                        dan <span class="font-medium text-white">{{ Math.min(currentPage * itemsPerPage,
+                            filteredScans.length) }}</span> içinden <span class="font-medium text-white">{{
                                 filteredScans.length }}</span>
-                        results
+                        netije
                     </p>
                 </div>
                 <div class="flex flex-1 justify-between sm:justify-end gap-3">
                     <button
                         class="relative inline-flex items-center rounded-md border border-white/10 bg-[#1e2329] px-3 py-2 text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        :disabled="currentPage === 1" @click="changePage(currentPage - 1)">Previous</button>
+                        :disabled="currentPage === 1" @click="changePage(currentPage - 1)">Öňki</button>
                     <button
                         class="relative inline-flex items-center rounded-md border border-white/10 bg-[#1e2329] px-3 py-2 text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        :disabled="currentPage === totalPages" @click="changePage(currentPage + 1)">Next</button>
+                        :disabled="currentPage === totalPages" @click="changePage(currentPage + 1)">Indiki</button>
                 </div>
             </nav>
         </div>
@@ -145,11 +144,11 @@
                             <div class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
                                     <h3 class="text-xl leading-6 font-bold text-white mb-4" id="modal-title">
-                                        Scan Report: {{ selectedScan?.target_url }}
+                                        Barlag hasabaty: {{ selectedScan?.target_url }}
                                     </h3>
 
                                     <div v-if="isScanDetailsLoading" class="text-center py-8 text-slate-400">
-                                        Loading details...
+                                        Maglumatlar ýüklenýär...
                                     </div>
 
                                     <div v-else>
@@ -159,11 +158,11 @@
                                                 <thead
                                                     class="text-xs text-slate-400 uppercase bg-white/5 border-b border-white/5">
                                                     <tr>
-                                                        <th class="px-6 py-4" scope="col">Risk</th>
-                                                        <th class="px-6 py-4" scope="col">Alert</th>
+                                                        <th class="px-6 py-4" scope="col">Töwekgelçilik</th>
+                                                        <th class="px-6 py-4" scope="col">Duýduryş</th>
                                                         <th class="px-6 py-4" scope="col">URL</th>
-                                                        <th class="px-6 py-4" scope="col">Confidence</th>
-                                                        <th class="px-6 py-4" scope="col">Details</th>
+                                                        <th class="px-6 py-4" scope="col">Ynamlylyk</th>
+                                                        <th class="px-6 py-4" scope="col">Jikme-jiklikler</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-white/5">
@@ -184,21 +183,11 @@
                                                             :class="getConfidenceClass(alert.confidence)">{{
                                                                 alert.confidence }}</td>
                                                         <!-- Details are shown inline or user can see description/solution here? The user asked to show scan details in history view too.
-                                                             Let's show description/solution in a collapsible detail or just columns. 
-                                                             The request was "pagination-de gorkezmegi unutma. Tablisany modele gabat getir".
-                                                             I will show the main columns and maybe a tooltip or expand for description/solution if needed, 
-                                                             or just assume "Scan Details" means the list of alerts itself is the detail. 
-                                                             The user provided a model: alert, confidence, description, risk, solution, url.
-                                                             I'm displaying Risk, Alert, URL, Confidence. 
-                                                             Description and Solution are large texts, better suited for a nested detail or tooltip.
-                                                             Let's add an expand row or another modal? A nested modal is bad UX.
-                                                             I will add a row expansion for description/solution.
-                                                        -->
                                                         <td class="px-6 py-4">
                                                             <details class="group cursor-pointer" ref="detailsElement">
                                                                 <summary
                                                                     class="list-none text-primary font-medium hover:underline">
-                                                                    View</summary>
+                                                                    Gör</summary>
                                                                 <div class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80"
                                                                     @click.stop="((e) => (e.target as HTMLElement).closest('details')?.removeAttribute('open'))($event)">
                                                                     <div class="bg-[#1e2329] p-6 rounded-lg max-w-2xl w-full border border-white/10 max-h-[80vh] overflow-y-auto relative"
@@ -211,14 +200,14 @@
                                                                         <div class="space-y-4">
                                                                             <div>
                                                                                 <strong
-                                                                                    class="text-slate-300 block">Description:</strong>
+                                                                                    class="text-slate-300 block">Düşündiriş:</strong>
                                                                                 <p
                                                                                     class="text-slate-400 text-sm whitespace-pre-wrap">
                                                                                     {{ alert.description }}</p>
                                                                             </div>
                                                                             <div>
                                                                                 <strong
-                                                                                    class="text-slate-300 block">Solution:</strong>
+                                                                                    class="text-slate-300 block">Çözgüt:</strong>
                                                                                 <p
                                                                                     class="text-slate-400 text-sm whitespace-pre-wrap">
                                                                                     {{ alert.solution }}</p>
@@ -226,12 +215,12 @@
                                                                             <div
                                                                                 class="grid grid-cols-2 gap-2 text-sm border-t border-white/10 pt-4">
                                                                                 <p><span
-                                                                                        class="text-slate-400">Risk:</span>
+                                                                                        class="text-slate-400">Töwekgelçilik:</span>
                                                                                     <span class="text-white">{{
                                                                                         alert.risk_level }}</span>
                                                                                 </p>
                                                                                 <p><span
-                                                                                        class="text-slate-400">Confidence:</span>
+                                                                                        class="text-slate-400">Ynamlylyk:</span>
                                                                                     <span class="text-white">{{
                                                                                         alert.confidence }}</span>
                                                                                 </p>
@@ -250,7 +239,7 @@
                                                     </tr>
                                                     <tr v-if="paginatedAlerts.length === 0">
                                                         <td colspan="5" class="px-6 py-8 text-center text-slate-400">
-                                                            No details found for this scan.
+                                                            Bu barlag üçin hiç hili maglumat tapylmady.
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -266,7 +255,7 @@
                                                 <span class="material-symbols-outlined text-sm">chevron_left</span>
                                             </button>
 
-                                            <span class="text-xs text-slate-400 px-2">Page {{ alertCurrentPage }} of {{
+                                            <span class="text-xs text-slate-400 px-2">Sahypa {{ alertCurrentPage }} dan {{
                                                 totalAlertPages }}</span>
 
                                             <button
@@ -285,7 +274,7 @@
                             <button type="button"
                                 class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:ml-3 sm:w-auto sm:text-sm"
                                 @click="showReportModal = false">
-                                Close
+                                Ýap
                             </button>
                         </div>
                     </div>

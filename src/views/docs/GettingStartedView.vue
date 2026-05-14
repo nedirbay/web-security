@@ -7,11 +7,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            Getting Started
+                            Başlamak
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Learn the basics of using our security platform.
+                            Howpsuzlyk platformamyzy ulanmagyň esaslaryny öwreniň.
                         </h2>
                     </div>
                 </div>
@@ -19,27 +19,25 @@
         </div>
         <div class="px-4 sm:px-10 max-w-4xl mx-auto w-full">
             <article class="prose prose-invert max-w-none text-white">
-                <h3>Introduction</h3>
-                <p>Welcome to the Web Security Platform. This guide will help you understand how to navigate and utilize
-                    the features available to you.</p>
+                <h3>Giriş</h3>
+                <p>Web howpsuzlyk platformasyna hoş geldiňiz. Bu gollanma size elýeterli funksiýalary nädip ulanmalydygyny we nawigasiýany öwrenmäge kömek eder.</p>
 
-                <h3>Prerequisites</h3>
+                <h3>Talaplar</h3>
                 <ul>
-                    <li>An active account</li>
-                    <li>Basic understanding of web security concepts</li>
+                    <li>Işjeň hasap</li>
+                    <li>Web howpsuzlyk düşünjeleri barada başlangyç bilim</li>
                 </ul>
 
-                <h3>First Steps</h3>
+                <h3>Ilkinji ädimler</h3>
                 <ol>
-                    <li><strong>Dashboard:</strong> Navigate to the dashboard to see an overview of your security
-                        status.</li>
-                    <li><strong>Run a Scan:</strong> Use the "Scans" section to initiate your first vulnerability scan.
+                    <li><strong>Panel:</strong> Howpsuzlyk ýagdaýyňyzyň umumy synyny görmek üçin panele geçiň.</li>
+                    <li><strong>Barlagy başlatmak:</strong> Ilkinji gowşaklyk barlagyny başlatmak üçin "Barlaglar" bölümini ulanyň.
                     </li>
-                    <li><strong>Review Reports:</strong> Analyze the generated reports to identify potential risks.</li>
+                    <li><strong>Hasabatlary gözden geçirmek:</strong> Ähtimal bolan töwekgelçilikleri anyklamak üçin dörän hasabatlary seljeriň.</li>
                 </ol>
             </article>
             <div class="mt-8">
-                <router-link to="/docs" class="text-primary hover:underline">← Back to Documentation</router-link>
+                <router-link to="/docs" class="text-primary hover:underline">← Dokumentasiýa dolan</router-link>
             </div>
         </div>
     </main>

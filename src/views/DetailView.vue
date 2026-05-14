@@ -4,7 +4,7 @@
             <!-- Breadcrumbs -->
             <div class="flex flex-wrap gap-2 pt-8 pb-4">
                 <router-link to="/"
-                    class="text-white dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors">Home</router-link>
+                    class="text-white dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors">Baş sahypa</router-link>
                 <span class="text-white dark:text-gray-400 text-sm font-medium leading-normal">/</span>
                 <router-link to="/"
                     class="text-white dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors">Blog</router-link>
@@ -21,13 +21,13 @@
                 </h1>
                 <!-- MetaText -->
                 <p class="text-white dark:text-gray-400 text-sm font-normal leading-normal">
-                    Published on {{ new Date(blog.created_at).toLocaleDateString() }}
+                    Neşir edilen senesi: {{ new Date(blog.created_at).toLocaleDateString() }}
                 </p>
                 <!-- Chips -->
                 <div class="flex gap-3 flex-wrap">
                     <div
                         class="flex h-8 shrink-0 items-center text-white justify-center gap-x-2 rounded-lg bg-primary/10 dark:bg-primary/20 px-4">
-                        Category :
+                        Kategoriýa:
                         <p class="text-primary dark:text-primary text-sm font-medium leading-normal">
                             {{ getCategoryName(blog.category) }}
                         </p>
@@ -74,7 +74,7 @@ const categories = ref<BlogCategory[]>([]);
 
 const getCategoryName = (categoryId: number) => {
     const category = categories.value.find((c) => c.id === categoryId);
-    return category ? category.name : 'General';
+    return category ? category.name : 'Umumy';
 };
 
 onMounted(() => {

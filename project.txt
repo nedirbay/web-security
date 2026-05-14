@@ -1,0 +1,85 @@
+src/views papkasyndaky sahypalar we mazmuny
+
+1) src/views/HomeView.vue
+- Blog baş sahypasy.
+- Uly hero bölüminde blog hakda başlyk, düşündiriş we gözleg paneli bar.
+- Kategoriýa chipleri görkezilýär.
+- Blog kartlary (surat, kategoriýa, at, senesi) sanawda çykýar.
+- Sahypalama (pagination) bilen indiki/öňki sahypalara geçilýär.
+
+2) src/views/LoginView.vue
+- Admin/ulanyjy giriş sahypasy.
+- Username, password, "Meni ýatda sakla" checkboxy bar.
+- "Içerik gir" düwmesi bilen login edýär.
+- "Hasabyňyz ýokmy?" bölümi we hasap açmak baglanyşygy bar.
+
+3) src/views/Dasboard.vue
+- Dashboard statistik sahypasy.
+- KPI kartlary: jemi duýduryşlar, barlanan programmalar, ýokary derejeli tapyndylar, soňky 7 gün barlaglar.
+- Howp derejesi boýunça paýlanyş (donut görnüşli grafika meňzeş bölüm).
+- Recent scan hereketleriniň tablisasy.
+- Çalt hereketler düwmeleri: täze barlag, täze nyşana, hasabat döret.
+
+4) src/views/ScanView.vue
+- Täze howpsuzlyk barlagyny başlatmak sahypasy.
+- URL girizilýär we "Häzir barla" düwmesi bar.
+- Barlag wagty progress bar görkezilýär.
+- Giňişleýin sazlamalar (çuňluk, user-agent, paralel akym, timeout, checkbox opsiýalar).
+- Netijede töwekgelçilik sany kartlarda görkezilýär (Critical/High/Medium/Low).
+- Tapylan alert/duýduryşlar tablisasy, pagination we detail modal bar.
+
+5) src/views/ScanHistoryView.vue
+- Barlag taryhy sahypasy.
+- Gözleg, status filteri we sene aralygy üçin UI bar.
+- Ähli barlaglar tablisada görkezilýär (sene, URL, status, dowamlylyk).
+- Sahypalama bar.
+- "Hasabaty gör" arkaly modal açylýar; modalda alertleriň jikme-jiklikleri görkezilýär we own pagination bar.
+
+6) src/views/DetailView.vue
+- Blog makalasynyň detail sahypasy.
+- Breadcrumb, makalanyň ady, neşir senesi, kategoriýasy görkezilýär.
+- Matalanyň esasy teksti `description` arkaly HTML görnüşinde çykarylýar.
+
+7)
+- Sazlamalar sahypasy.
+- Profil maglumatlary: ad, familiýa, email, bio, profil suraty.
+- Ileri tutmalar: gara tema, e-poçta habarnamalary toggle.
+- Howpsuzlyk bölümi: parol täzelenmesi, iki basgançakly tassyklama (2FA) maglumaty.
+
+8)
+- Dokumentasiýa esasy sahypasy.
+- 6 sany kart bilen resurs bölümleri:
+  - Başlangyç
+  - OWASP Top 10
+  - Howpsuz kodlamak
+  - API howpsuzlygy
+  - Tassyklama (Auth)
+  - FAQ we Goldaw
+- Her karta degişli docs sahypasyna geçýär.
+
+9)
+- Häzirki wagtda boş (template diýen ýaly doldurylmadyk).
+
+10)
+- "Başlamak" dokumentasiýasy.
+- Giriş, talaplar, ilkinji ädimler düşündirilýär.
+
+11)
+- OWASP Top 10 barada maglumat.
+- Esasy howpsuzlyk töwekgelçilikleriniň sanawy we gysgaça düşündirişi berilýär.
+
+12)
+- Howpsuz kod ýazmak boýunça maslahatlar.
+- Input validation, output encoding, parol dolandyryşy, ýalňyşlyk dolandyryşy ýaly bölümler bar.
+
+13)
+- API howpsuzlygy boýunça gollanma.
+- Tassyklama, awtorizasiýa, rate limit/throttle, maglumat paş edilmeginiň öňüni almak barada maglumat bar.
+
+14)
+- Tassyklama boýunça dokumentasiýa.
+- MFA, sessiýa dolandyryş, güýçli parol syýasaty temalary görkezilýär.
+
+15)
+- Köp soralýan soraglar we goldaw sahypasy.
+- Parol täzeläp bolşy, barlag ýygylygy we goldaw bilen habarlaşmak barada jogaplar bar.

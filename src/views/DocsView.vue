@@ -9,11 +9,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            Documentation & Resources
+                            Dokumentasiýa we Resurslar
                         </h1>
                         <h2
                             class="text-slate-300 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Comprehensive guides and resources for securing your web applications.
+                            Web programmalaryňyzy goramak üçin giňişleýin gollanmalar we resurslar.
                         </h2>
                     </div>
                 </div>
@@ -27,10 +27,9 @@
                 <div class="text-primary mb-4">
                     <span class="material-symbols-outlined text-4xl">description</span>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Getting Started</h3>
-                <p class="text-slate-600 text-white mb-4">Learn the basics of web application security and how
-                    to use our platform.</p>
-                <router-link to="/docs/getting-started" class="text-primary font-medium hover:underline">Read Guide
+                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Başlangyç</h3>
+                <p class="text-slate-600 text-white mb-4">Web programmalarynyň howpsuzlygyndaky esaslaryny we platformamyzy nädip ulanmalydygyny öwreniň.</p>
+                <router-link to="/docs/getting-started" class="text-primary font-medium hover:underline">Gollanmany oka
                     →</router-link>
             </div>
 
@@ -40,9 +39,8 @@
                     <span class="material-symbols-outlined text-4xl">security</span>
                 </div>
                 <h3 class="text-lg font-bold text-slate-800 text-white mb-2">OWASP Top 10</h3>
-                <p class="text-slate-600 text-white mb-4">Detailed information about the top 10 web
-                    application security risks.</p>
-                <router-link to="/docs/owasp-top-10" class="text-primary font-medium hover:underline">Explore Risks
+                <p class="text-slate-600 text-white mb-4">Iň esasy 10 web programma howpsuzlyk töwekgelçiligi barada jikme-jik maglumat.</p>
+                <router-link to="/docs/owasp-top-10" class="text-primary font-medium hover:underline">Töwekgelçilikleri öwren
                     →</router-link>
             </div>
 
@@ -51,10 +49,9 @@
                 <div class="text-primary mb-4">
                     <span class="material-symbols-outlined text-4xl">code</span>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Secure Coding</h3>
-                <p class="text-slate-600 text-white mb-4">Best practices and code examples for writing secure
-                    applications.</p>
-                <router-link to="/docs/secure-coding" class="text-primary font-medium hover:underline">View Examples
+                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Howpsuz kodlamak</h3>
+                <p class="text-slate-600 text-white mb-4">Howpsuz programmalar ýazmak üçin iň gowy tejribeler we kod nusgalary.</p>
+                <router-link to="/docs/secure-coding" class="text-primary font-medium hover:underline">Nusgalary gör
                     →</router-link>
             </div>
 
@@ -63,10 +60,9 @@
                 <div class="text-primary mb-4">
                     <span class="material-symbols-outlined text-4xl">api</span>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">API Security</h3>
-                <p class="text-slate-600 text-white mb-4">Protect your APIs from common vulnerabilities and
-                    attacks.</p>
-                <router-link to="/docs/api-security" class="text-primary font-medium hover:underline">Learn More
+                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">API howpsuzlygy</h3>
+                <p class="text-slate-600 text-white mb-4">API-leriňizi umumy gowşaklyklardan we hüjümlerden goraň.</p>
+                <router-link to="/docs/api-security" class="text-primary font-medium hover:underline">Köpräk öwren
                     →</router-link>
             </div>
 
@@ -75,10 +71,9 @@
                 <div class="text-primary mb-4">
                     <span class="material-symbols-outlined text-4xl">shield</span>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Authentication</h3>
-                <p class="text-slate-600 text-white mb-4">Implement secure authentication and authorization
-                    mechanisms.</p>
-                <router-link to="/docs/authentication" class="text-primary font-medium hover:underline">Read Guide
+                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Tassyklama (Auth)</h3>
+                <p class="text-slate-600 text-white mb-4">Howpsuz tassyklama we awtorizasiýa mehanizmlerini giriziň.</p>
+                <router-link to="/docs/authentication" class="text-primary font-medium hover:underline">Gollanmany oka
                     →</router-link>
             </div>
 
@@ -87,10 +82,10 @@
                 <div class="text-primary mb-4">
                     <span class="material-symbols-outlined text-4xl">help</span>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">FAQ & Support</h3>
-                <p class="text-slate-600 text-white mb-4">Answers to common questions and support resources.
+                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Köp soralýanlar we goldaw</h3>
+                <p class="text-slate-600 text-white mb-4">Umumy soraglara jogaplar we goldaw resurslary.
                 </p>
-                <router-link to="/docs/faq" class="text-primary font-medium hover:underline">Get Help →</router-link>
+                <router-link to="/docs/faq" class="text-primary font-medium hover:underline">Goldaw al →</router-link>
             </div>
         </div>
     </main>

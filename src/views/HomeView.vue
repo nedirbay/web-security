@@ -8,11 +8,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            Stay Ahead of Threats: The ZAP Security Blog
+                            Howplardan öňde boluň: ZAP Howpsuzlyk Blogy
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Expert insights on identifying and mitigating the top web application vulnerabilities.
+                            Web programmalarynyň iň esasy gowşaklyklaryny anyklamak we azaltmak barada hünärmenleriň maslahatlary.
                         </h2>
                     </div>
                     <label class="flex flex-col min-w-40 h-14 w-full max-w-[480px] @[480px]:h-16">
@@ -23,12 +23,12 @@
                             </div>
                             <input
                                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-800 dark:text-white focus:outline-0 focus:ring-0 border border-slate-300 dark:border-white/10 bg-white dark:bg-[#1e2329] focus:border-primary h-full placeholder:text-slate-400 dark:placeholder:text-slate-500 px-[15px] rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
-                                placeholder="Search for articles..." />
+                                placeholder="Makalalary gözläň..." />
                             <div
                                 class="flex items-center justify-center rounded-r-lg border-l-0 border border-slate-300 dark:border-white/10 bg-white dark:bg-[#1e2329] pr-[7px]">
                                 <button
                                     class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-primary/90">
-                                    <span class="truncate">Search</span>
+                                    <span class="truncate">Gözleg</span>
                                 </button>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
         <div class="flex gap-2 sm:gap-3 p-3 overflow-x-auto justify-center">
             <div
                 class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-primary pl-4 pr-4">
-                <p class="text-white text-sm font-medium leading-normal">All Posts</p>
+                <p class="text-white text-sm font-medium leading-normal">Ähli ýazgylar</p>
             </div>
             <div v-for="category in blogCategoriesData" :key="category.id"
                 class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-full bg-slate-200 dark:bg-[#1e2329] border border-transparent dark:border-white/10 pl-4 pr-4 hover:bg-slate-300 dark:hover:bg-white/5 transition-colors">
@@ -169,7 +169,7 @@ const visiblePages = computed(() => {
 
 const getCategoryName = (categoryId: number) => {
     const category = blogCategoriesData.value.find((c) => c.id === categoryId);
-    return category ? category.name : 'General';
+    return category ? category.name : 'Umumy';
 };
 
 const fetchBlogs = (page: number) => {

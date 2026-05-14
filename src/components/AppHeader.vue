@@ -15,15 +15,15 @@
         <div class="hidden md:flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
                 <router-link to="/"
-                    class="text-white hover:text-primary text-sm font-medium leading-normal">Main</router-link>
+                    class="text-white hover:text-primary text-sm font-medium leading-normal">Baş sahypa</router-link>
                 <a class="text-white hover:text-primary text-sm font-medium leading-normal" href="#">Blog</a>
                 <router-link to="/docs"
-                    class="text-white hover:text-primary text-sm font-medium leading-normal">Docs</router-link>
-                <a class="text-white hover:text-primary text-sm font-medium leading-normal" href="#">Scans</a>
+                    class="text-white hover:text-primary text-sm font-medium leading-normal">Gollanma</router-link>
+                <a class="text-white hover:text-primary text-sm font-medium leading-normal" href="#">Gözlegler</a>
             </div>
             <router-link to="/login"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
-                <span class="truncate">Start Free Scan</span>
+                <span class="truncate">Mugt barlagy başlat</span>
             </router-link>
         </div>
         <button class="md:hidden flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10">

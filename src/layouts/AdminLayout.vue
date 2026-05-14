@@ -10,7 +10,7 @@
                     </div>
                     <div class="flex flex-col">
                         <h1 class="text-white text-base font-bold leading-normal tracking-wide">ZAP Platform</h1>
-                        <p class="text-slate-400 text-xs font-medium leading-normal">Security Dashboard</p>
+                        <p class="text-slate-400 text-xs font-medium leading-normal">Howpsuzlyk paneli</p>
                     </div>
                 </div>
                 <nav class="flex flex-col gap-2">
@@ -18,25 +18,25 @@
                         class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-slate-300 transition-all duration-200"
                         active-class="bg-primary/10 text-primary shadow-[inset_3px_0_0_0_rgba(0,123,255,1)]">
                         <span class="material-symbols-outlined">dashboard</span>
-                        <p class="text-sm font-medium leading-normal">Dashboard</p>
+                        <p class="text-sm font-medium leading-normal">Panel</p>
                     </router-link>
                     <router-link to="/dashboard/scan"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-slate-300 transition-all duration-200"
                         active-class="bg-primary/10 text-primary shadow-[inset_3px_0_0_0_rgba(0,123,255,1)]">
                         <span class="material-symbols-outlined">biotech</span>
-                        <p class="text-sm font-medium leading-normal">Scan</p>
+                        <p class="text-sm font-medium leading-normal">Barlag</p>
                     </router-link>
                     <router-link to="/dashboard/history"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-slate-300 transition-all duration-200"
                         active-class="bg-primary/10 text-primary shadow-[inset_3px_0_0_0_rgba(0,123,255,1)]">
                         <span class="material-symbols-outlined">summarize</span>
-                        <p class="text-sm font-medium leading-normal">History</p>
+                        <p class="text-sm font-medium leading-normal">Taryh</p>
                     </router-link>
                     <router-link to="/dashboard/settings"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-slate-300 transition-all duration-200"
                         active-class="bg-primary/10 text-primary shadow-[inset_3px_0_0_0_rgba(0,123,255,1)]">
                         <span class="material-symbols-outlined">settings</span>
-                        <p class="text-sm font-medium leading-normal">Settings</p>
+                        <p class="text-sm font-medium leading-normal">Sazlamalar</p>
                     </router-link>
                 </nav>
             </div>
@@ -44,7 +44,7 @@
                 <router-link to="/login"
                     class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors">
                     <span class="material-symbols-outlined">logout</span>
-                    <p class="text-sm font-medium leading-normal">Logout</p>
+                    <p class="text-sm font-medium leading-normal">Çykyş</p>
                 </router-link>
             </div>
         </aside>
@@ -53,14 +53,14 @@
             <!-- TopNavBar -->
             <header
                 class="flex items-center justify-between whitespace-nowrap border-b border-white/5 bg-[#1e2329]/95 backdrop-blur-sm px-8 py-4 sticky top-0 z-10 shadow-sm">
-                <h2 class="text-white text-xl font-bold leading-tight tracking-tight">Dashboard</h2>
+                <h2 class="text-white text-xl font-bold leading-tight tracking-tight">Panel</h2>
                 <div class="flex flex-1 justify-end items-center gap-4">
                     <label class="relative flex-col min-w-40 !h-10 max-w-sm hidden md:flex group">
                         <span
                             class="material-symbols-outlined text-slate-500 group-focus-within:text-primary absolute left-3 top-1/2 -translate-y-1/2 text-xl transition-colors">search</span>
                         <input
                             class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-white/10 bg-[#0f1216] h-full placeholder:text-slate-500 pl-10 pr-4 text-sm font-normal leading-normal transition-all"
-                            placeholder="Search scans, targets..." value="" />
+                            placeholder="Barlaglary, nyşanalary gözläň..." value="" />
                     </label>
                     <div class="flex items-center gap-2">
                         <button
@@ -79,7 +79,7 @@
                         </div>
                         <div class="hidden lg:flex flex-col text-right">
                             <p class="text-sm font-semibold text-white">Alex Hudson</p>
-                            <p class="text-xs text-slate-400">Administrator</p>
+                            <p class="text-xs text-slate-400">Admin</p>
                         </div>
                     </div>
                 </div>

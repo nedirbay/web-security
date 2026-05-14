@@ -7,11 +7,11 @@
                     <div class="flex flex-col gap-2 text-left">
                         <h1
                             class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            API Security
+                            API howpsuzlygy
                         </h1>
                         <h2
                             class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Protecting your Application Programming Interfaces.
+                            Programma interfeýsleriňizi (API) goramak.
                         </h2>
                     </div>
                 </div>
@@ -19,22 +19,22 @@
         </div>
         <div class="px-4 sm:px-10 max-w-4xl mx-auto w-full">
             <article class="prose prose-invert max-w-none text-white">
-                <h3>Authentication</h3>
-                <p>Ensure all API endpoints are authenticated. Use standards like OAuth 2.0 or JWT (JSON Web Tokens).
+                <h3>Tassyklama</h3>
+                <p>Ähli API nokatlarynyň tassyklanandygyna göz ýetiriň. OAuth 2.0 ýa-da JWT (JSON Web Tokens) ýaly standartlary ulanyň.
                 </p>
 
-                <h3>Authorization</h3>
-                <p>Implement object-level authorization checking to prevent IDOR (Insecure Direct Object Reference).
-                    Users should only access their own data.</p>
+                <h3>Awtorizasiýa</h3>
+                <p>IDOR-yň (Insecure Direct Object Reference) öňüni almak üçin obýekt derejesindäki awtorizasiýa barlagyny giriziň.
+                    Ulanyjylar diňe öz maglumatlaryna girmeli.</p>
 
-                <h3>Rate Limiting</h3>
-                <p>Implement rate limiting and throttling to prevent abuse and DDoS attacks.</p>
+                <h3>Tizligi çäklendirmek</h3>
+                <p>Bilmestän ulanmagyň we DDoS hüjümleriniň öňüni almak üçin tizligi çäklendirmegi we throttilini giriziň.</p>
 
-                <h3>Data Exposure</h3>
-                <p>Minimize data exposure. Only return the data that is necessary for the client.</p>
+                <h3>Maglumatlaryň paş edilmegi</h3>
+                <p>Maglumatlaryň paş edilmegini iň az derejä düşüriň. Diňe müşderi üçin zerur bolan maglumatlary yzyna gaýtaryň.</p>
             </article>
             <div class="mt-8">
-                <router-link to="/docs" class="text-primary hover:underline">← Back to Documentation</router-link>
+                <router-link to="/docs" class="text-primary hover:underline">← Dokumentasiýa dolan</router-link>
             </div>
         </div>
     </main>
