@@ -1,36 +1,43 @@
 <template>
-    <header
-        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 sm:px-10 py-3 bg-[rgb(12,24,36)] backdrop-blur-md">
-        <div class="flex items-center gap-4 text-white">
-            <div class="size-6 text-primary">
-                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w.org/2000/svg">
-                    <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor">
-                    </path>
-                </svg>
-            </div>
-            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-                Web
-                Security</h2>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-black uppercase">Guardly</span>
         </div>
-        <div class="hidden md:flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
-                <router-link to="/"
-                    class="text-white hover:text-primary text-sm font-medium leading-normal">Baş sahypa</router-link>
-                <a class="text-white hover:text-primary text-sm font-medium leading-normal" href="#">Blog</a>
-                <router-link to="/docs"
-                    class="text-white hover:text-primary text-sm font-medium leading-normal">Gollanma</router-link>
-                <a class="text-white hover:text-primary text-sm font-medium leading-normal" href="#">Gözlegler</a>
-            </div>
-            <router-link to="/login"
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
-                <span class="truncate">Mugt barlagy başlat</span>
-            </router-link>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <router-link to="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Home</router-link>
+          <router-link to="/blogs" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Blogs</router-link>
+          <router-link to="/docs" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Documentation</router-link>
+        </nav>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center gap-4">
+          <router-link to="/login" class="text-sm font-medium text-black hover:text-gray-600 transition-colors">Login</router-link>
+          <router-link to="/register" class="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all shadow-sm">
+            Get Started
+          </router-link>
         </div>
-        <button class="md:hidden flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10">
-            <span class="material-symbols-outlined">menu</span>
-        </button>
-    </header>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script setup lang="ts">
+// Navigation Logic
 </script>
+
+<style scoped>
+.router-link-active {
+  color: black;
+  font-weight: 600;
+}
+</style>

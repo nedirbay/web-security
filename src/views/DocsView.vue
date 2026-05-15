@@ -1,95 +1,156 @@
 <template>
-    <main class="flex flex-col gap-8 py-8 px-4 sm:px-0">
-        <!-- HeroSection -->
-        <div class="@container">
-            <div class="@[480px]:p-4">
-                <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-start justify-end px-4 pb-10 @[480px]:px-10"
-                    data-alt="Abstract blue and dark geometric shapes representing cybersecurity"
-                    style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(17, 23, 34, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDP6asXHBmFOOpd3i4qVbudeI5dm3ipvEcVhBBK3AzUBhVIl3LjLojnnFYRizVr26E-N19MbNTdeO6dly_KJ0qMgUrKlR2F6bnouX6Glg5XmroqRFvEWNLVdsuCVe3XlvBnAgGQdBf5cyTrsfJDPDAu1wv34r2p0mD84dNpLvlWZioekAGEzzQbOKGosr-KVKKGrJiI0RPiL12zC1MXjVZJ6-WXZndMH-6zdwHUIWl6o1d7UfqCcBpSl3uNcoe1lWkqH4bvBL1c8UQ");'>
-                    <div class="flex flex-col gap-2 text-left">
-                        <h1
-                            class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                            Dokumentasiýa we Resurslar
-                        </h1>
-                        <h2
-                            class="text-slate-300 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                            Web programmalaryňyzy goramak üçin giňişleýin gollanmalar we resurslar.
-                        </h2>
-                    </div>
-                </div>
-            </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col lg:flex-row gap-12">
+    <!-- Loading State -->
+    <div v-if="loading" class="flex flex-1 gap-12">
+      <div class="w-64 animate-pulse space-y-8">
+        <div v-for="i in 3" :key="i">
+          <div class="h-4 bg-gray-100 rounded w-1/2 mb-4"></div>
+          <div class="h-3 bg-gray-100 rounded w-full mb-2"></div>
+        </div>
+      </div>
+      <div class="flex-1 animate-pulse">
+        <div class="h-10 bg-gray-100 rounded w-3/4 mb-8"></div>
+        <div class="h-4 bg-gray-100 rounded w-full mb-4"></div>
+      </div>
+    </div>
+
+    <template v-else>
+      <!-- Sidebar Navigation -->
+      <aside class="w-full lg:w-64 flex-shrink-0 flex flex-col">
+        <nav class="sticky top-32 space-y-8 flex-1">
+          <div v-for="(pagesList, category) in categories" :key="category">
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+              {{ category || 'General' }}
+            </h3>
+            <ul class="space-y-3">
+              <li v-for="page in pagesList" :key="page.id">
+                <button 
+                  @click="selectedPage = page"
+                  class="text-sm transition-colors text-left w-full"
+                  :class="selectedPage?.id === page.id ? 'font-bold text-blue-600' : 'text-gray-600 hover:text-black'"
+                >
+                  {{ page.title }}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Sidebar Pagination -->
+        <div v-if="totalCount > pageSize" class="sticky bottom-0 bg-white pt-6 border-t border-gray-100 mt-8">
+          <div class="flex items-center justify-between gap-4">
+            <button 
+              @click="prevPage" 
+              :disabled="!hasPrev"
+              class="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-30 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <span class="text-xs font-medium text-gray-400">Page {{ currentPage }}</span>
+            <button 
+              @click="nextPage" 
+              :disabled="!hasNext"
+              class="p-2 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-30 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <article v-if="selectedPage" class="flex-1 max-w-3xl prose prose-slate prose-lg">
+        <h1 class="text-4xl font-extrabold text-black mb-8 leading-tight">
+          {{ selectedPage.title }}
+        </h1>
+        <div class="text-gray-600 leading-relaxed whitespace-pre-wrap">
+          {{ selectedPage.content }}
         </div>
 
-        <!-- Documentation Sections -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-            <div
-                class="dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-primary mb-4">
-                    <span class="material-symbols-outlined text-4xl">description</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Başlangyç</h3>
-                <p class="text-slate-600 text-white mb-4">Web programmalarynyň howpsuzlygyndaky esaslaryny we platformamyzy nädip ulanmalydygyny öwreniň.</p>
-                <router-link to="/docs/getting-started" class="text-primary font-medium hover:underline">Gollanmany oka
-                    →</router-link>
-            </div>
-
-            <div
-                class="dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-primary mb-4">
-                    <span class="material-symbols-outlined text-4xl">security</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">OWASP Top 10</h3>
-                <p class="text-slate-600 text-white mb-4">Iň esasy 10 web programma howpsuzlyk töwekgelçiligi barada jikme-jik maglumat.</p>
-                <router-link to="/docs/owasp-top-10" class="text-primary font-medium hover:underline">Töwekgelçilikleri öwren
-                    →</router-link>
-            </div>
-
-            <div
-                class="dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-primary mb-4">
-                    <span class="material-symbols-outlined text-4xl">code</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Howpsuz kodlamak</h3>
-                <p class="text-slate-600 text-white mb-4">Howpsuz programmalar ýazmak üçin iň gowy tejribeler we kod nusgalary.</p>
-                <router-link to="/docs/secure-coding" class="text-primary font-medium hover:underline">Nusgalary gör
-                    →</router-link>
-            </div>
-
-            <div
-                class="dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-primary mb-4">
-                    <span class="material-symbols-outlined text-4xl">api</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">API howpsuzlygy</h3>
-                <p class="text-slate-600 text-white mb-4">API-leriňizi umumy gowşaklyklardan we hüjümlerden goraň.</p>
-                <router-link to="/docs/api-security" class="text-primary font-medium hover:underline">Köpräk öwren
-                    →</router-link>
-            </div>
-
-            <div
-                class="dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-primary mb-4">
-                    <span class="material-symbols-outlined text-4xl">shield</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Tassyklama (Auth)</h3>
-                <p class="text-slate-600 text-white mb-4">Howpsuz tassyklama we awtorizasiýa mehanizmlerini giriziň.</p>
-                <router-link to="/docs/authentication" class="text-primary font-medium hover:underline">Gollanmany oka
-                    →</router-link>
-            </div>
-
-            <div
-                class="dark:bg-black border border-slate-200 dark:border-white/10 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-primary mb-4">
-                    <span class="material-symbols-outlined text-4xl">help</span>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 text-white mb-2">Köp soralýanlar we goldaw</h3>
-                <p class="text-slate-600 text-white mb-4">Umumy soraglara jogaplar we goldaw resurslary.
-                </p>
-                <router-link to="/docs/faq" class="text-primary font-medium hover:underline">Goldaw al →</router-link>
-            </div>
+        <!-- Optional: Render code blocks if content looks like code -->
+        <div v-if="selectedPage.content.includes('//')" class="bg-black rounded-xl p-8 my-10">
+          <pre class="text-blue-400 font-mono text-sm"><code>{{ selectedPage.content }}</code></pre>
         </div>
-    </main>
+      </article>
+
+      <div v-else class="flex-1 flex flex-col items-center justify-center text-gray-400 py-20">
+        <p class="text-xl">Sahypa saýlaň</p>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, computed } from 'vue'
+import apiClient from '../api/axios'
+
+interface DocPage {
+  id: number
+  title: string
+  slug: string
+  category: string
+  content: string
+}
+
+const pages = ref<DocPage[]>([])
+const selectedPage = ref<DocPage | null>(null)
+const loading = ref(true)
+const totalCount = ref(0)
+const hasNext = ref(false)
+const hasPrev = ref(false)
+const currentPage = ref(1)
+const pageSize = 2
+
+const categories = computed(() => {
+  const groups: Record<string, DocPage[]> = {}
+  pages.value.forEach(p => {
+    if (!groups[p.category]) groups[p.category] = []
+    groups[p.category].push(p)
+  })
+  return groups
+})
+
+const fetchDocs = async (page = 1) => {
+  try {
+    loading.value = true
+    const response = await apiClient.get('/admin/docs-pages/', {
+      params: { page }
+    })
+    
+    if (Array.isArray(response.data)) {
+      pages.value = response.data
+      totalCount.value = response.data.length
+      hasNext.value = false
+      hasPrev.value = false
+    } else {
+      pages.value = response.data.results
+      totalCount.value = response.data.count
+      hasNext.value = !!response.data.next
+      hasPrev.value = !!response.data.previous
+    }
+    
+    currentPage.value = page
+    if (pages.value.length > 0 && !selectedPage.value) {
+      selectedPage.value = pages.value[0]
+    }
+  } catch (err) {
+    console.error('Failed to fetch docs:', err)
+  } finally {
+    loading.value = false
+  }
+}
+
+const nextPage = () => {
+  if (hasNext.value) fetchDocs(currentPage.value + 1)
+}
+
+const prevPage = () => {
+  if (hasPrev.value) fetchDocs(currentPage.value - 1)
+}
+
+onMounted(() => fetchDocs(1))
 </script>
