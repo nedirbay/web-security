@@ -86,7 +86,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import apiClient from '../api/axios'
+import { adminApi } from '../api/endpoints'
 
 interface DocPage {
   id: number
@@ -108,8 +108,9 @@ const pageSize = 2
 const categories = computed(() => {
   const groups: Record<string, DocPage[]> = {}
   pages.value.forEach(p => {
-    if (!groups[p.category]) groups[p.category] = []
-    groups[p.category].push(p)
+    const bucket = groups[p.category] ?? []
+    bucket.push(p)
+    groups[p.category] = bucket
   })
   return groups
 })
@@ -117,9 +118,7 @@ const categories = computed(() => {
 const fetchDocs = async (page = 1) => {
   try {
     loading.value = true
-    const response = await apiClient.get('/admin/docs-pages/', {
-      params: { page }
-    })
+    const response = await adminApi.getDocsPages({ page })
     
     if (Array.isArray(response.data)) {
       pages.value = response.data
@@ -135,7 +134,7 @@ const fetchDocs = async (page = 1) => {
     
     currentPage.value = page
     if (pages.value.length > 0 && !selectedPage.value) {
-      selectedPage.value = pages.value[0]
+      selectedPage.value = pages.value[0] ?? null
     }
   } catch (err) {
     console.error('Failed to fetch docs:', err)

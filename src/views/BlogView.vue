@@ -41,7 +41,7 @@
           </p>
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center font-bold">
-              {{ blog.author_email ? blog.author_email[0].toUpperCase() : 'A' }}
+              {{ blog.author_email?.[0]?.toUpperCase() || 'A' }}
             </div>
             <div>
               <p class="text-sm font-bold text-black">{{ blog.author_email || 'Admin' }}</p>
@@ -79,7 +79,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import apiClient from '../api/axios'
+import { adminApi } from '../api/endpoints'
 
 interface Blog {
   id: number
@@ -102,9 +102,7 @@ const pageSize = 2
 const fetchBlogs = async (page = 1) => {
   try {
     loading.value = true
-    const response = await apiClient.get('/admin/blog-posts/', {
-      params: { page }
-    })
+    const response = await adminApi.getBlogPosts({ page })
     blogs.value = response.data.results
     totalCount.value = response.data.count
     hasNext.value = !!response.data.next
