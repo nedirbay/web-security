@@ -1,22 +1,13 @@
 import { defineStore } from 'pinia'
 import apiClient from '../api/axios'
-
-interface User {
-  id: number
-  username: string
-  email: string
-  role?: string
-  phone?: string
-}
+import type { User } from '../types/api'
 
 const readStoredUser = (): User | null => {
   const savedUser = localStorage.getItem('user')
-
   if (!savedUser || savedUser === 'undefined' || savedUser === 'null') {
     localStorage.removeItem('user')
     return null
   }
-
   try {
     return JSON.parse(savedUser) as User
   } catch (error) {
@@ -27,32 +18,38 @@ const readStoredUser = (): User | null => {
 }
 
 export const useAuthStore = defineStore('auth', {
-  state: () => {
-    return {
-      user: readStoredUser(),
-      token: localStorage.getItem('token') || null,
-      loading: false,
-      error: null as string | null
-    }
-  },
+  state: () => ({
+    user: readStoredUser(),
+    token: localStorage.getItem('token') as string | null,
+    loading: false,
+    error: null as string | null,
+  }),
 
   getters: {
     isLoggedIn: (state) => !!state.token,
-    isAdmin: (state) => state.user?.role === 'admin'
+    isAdmin: (state) => state.user?.role === 'admin',
   },
 
   actions: {
-    async login(credentials: { email: string, password: string }) {
+    persistUser(user: User | null) {
+      this.user = user
+      if (user) localStorage.setItem('user', JSON.stringify(user))
+      else localStorage.removeItem('user')
+    },
+
+    persistToken(token: string | null) {
+      this.token = token
+      if (token) localStorage.setItem('token', token)
+      else localStorage.removeItem('token')
+    },
+
+    async login(credentials: { email: string; password: string }) {
       this.loading = true
       this.error = null
       try {
         const response = await apiClient.post('/users/login/', credentials)
-        this.token = response.data.access
-        this.user = response.data.user
-        
-        localStorage.setItem('token', this.token!)
-        localStorage.setItem('user', JSON.stringify(this.user))
-        
+        this.persistToken(response.data.access)
+        this.persistUser(response.data.user)
         return true
       } catch (err: any) {
         this.error = err.response?.data?.detail || 'Giriş şowsuz tamamlandy.'
@@ -62,7 +59,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    async register(userData: any) {
+    async register(userData: { username: string; email: string; password: string }) {
       this.loading = true
       this.error = null
       try {
@@ -79,9 +76,8 @@ export const useAuthStore = defineStore('auth', {
     async fetchMe() {
       if (!this.token) return
       try {
-        const response = await apiClient.get('/users/me/')
-        this.user = response.data
-        localStorage.setItem('user', JSON.stringify(this.user))
+        const response = await apiClient.get<User>('/users/me/')
+        this.persistUser(response.data)
       } catch (err) {
         console.error('Failed to fetch user info', err)
       }
@@ -90,9 +86,8 @@ export const useAuthStore = defineStore('auth', {
     async updateProfile(profileData: Partial<User>) {
       this.loading = true
       try {
-        const response = await apiClient.patch('/users/profile/', profileData)
-        this.user = response.data
-        localStorage.setItem('user', JSON.stringify(this.user))
+        const response = await apiClient.patch<User>('/users/profile/', profileData)
+        this.persistUser({ ...(this.user || ({} as User)), ...response.data })
         return true
       } catch (err: any) {
         this.error = err.response?.data?.detail || 'Profil täzelenmedi.'
@@ -102,19 +97,19 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+    updateUser(patch: Partial<User>) {
+      this.persistUser({ ...(this.user || ({} as User)), ...patch })
+    },
+
     async logout() {
       try {
-        if (this.token) {
-          await apiClient.post('/users/logout/')
-        }
+        if (this.token) await apiClient.post('/users/logout/')
       } catch (err) {
         console.error('Logout request failed', err)
       } finally {
-        this.token = null
-        this.user = null
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
+        this.persistToken(null)
+        this.persistUser(null)
       }
-    }
-  }
+    },
+  },
 })
