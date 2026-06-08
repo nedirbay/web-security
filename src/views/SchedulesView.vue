@@ -41,15 +41,15 @@
         <thead class="bg-gray-50/50 text-gray-400 text-xs font-bold uppercase tracking-widest">
           <tr>
             <th class="px-6 py-4">Target</th>
-            <th class="px-6 py-4">Cron</th>
+            <th class="px-6 py-4">Frequency</th>
             <th class="px-6 py-4">Scan Type</th>
             <th class="px-6 py-4">Next Run</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-50">
           <tr v-for="s in schedules" :key="s.id">
-            <td class="px-6 py-4 text-sm font-bold text-black">{{ s.target_address || s.target_name || s.target }}</td>
-            <td class="px-6 py-4 text-sm text-gray-500 font-mono">{{ s.cron || s.schedule || '-' }}</td>
+            <td class="px-6 py-4 text-sm font-bold text-black">{{ s.target }}</td>
+            <td class="px-6 py-4 text-sm text-gray-500">{{ s.frequency }}{{ s.frequency === 'custom' && s.custom_interval_minutes ? ` (${s.custom_interval_minutes}m)` : '' }}</td>
             <td class="px-6 py-4 text-sm text-gray-500">{{ s.scan_type || '-' }}</td>
             <td class="px-6 py-4 text-sm text-gray-500">{{ formatDate(s.next_run_at) }}</td>
           </tr>
@@ -68,14 +68,23 @@
             <input v-model="newSchedule.target" type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600" />
           </div>
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Cron Expression</label>
-            <input v-model="newSchedule.cron" type="text" placeholder="0 2 * * *" class="w-full px-4 py-3 font-mono rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600" />
+            <label class="block text-sm font-bold text-gray-700 mb-2">Frequency</label>
+            <select v-model="newSchedule.frequency" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+          <div v-if="newSchedule.frequency === 'custom'">
+            <label class="block text-sm font-bold text-gray-700 mb-2">Interval (minutes)</label>
+            <input v-model.number="newSchedule.custom_interval_minutes" type="number" min="1" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600" />
           </div>
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-2">Scan Type</label>
             <select v-model="newSchedule.scan_type" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="passive">Passive</option>
+              <option value="active">Active</option>
               <option value="full">Full</option>
-              <option value="quick">Quick</option>
               <option value="api">API</option>
             </select>
           </div>
@@ -98,7 +107,7 @@ const loading = ref(true)
 const showCreate = ref(false)
 const creating = ref(false)
 const createError = ref('')
-const newSchedule = reactive({ target: '', cron: '0 2 * * *', scan_type: 'full' })
+const newSchedule = reactive({ target: '', frequency: 'daily', custom_interval_minutes: 60, scan_type: 'passive' })
 
 const enqueueBody = ref('{\n  "schedule_ids": []\n}')
 const workerBody = ref('{}')

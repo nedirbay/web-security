@@ -41,24 +41,25 @@ describe('Targets API ↔ frontend modelleri', () => {
     })
   })
 
-  describe('B) Frontend tip uýgunlygy', () => {
-    it('Target tipi `address` ulanýar; backend `url` gaýtarýar (MEÝDAN ADY UÝGUNSYZ)', async () => {
-      // types/api.ts Target.address (required). Backend meýdany `url`.
+  describe('B) Frontend ↔ backend laýyklygy', () => {
+    it('Target tipi `url` ulanýar (öňki `address` däl)', async () => {
       const { data } = await targetsApi.getTargets()
       const t = asList(data)[0]
-      expect(t, 'Target.address meýdany backend-de ýok (backend `url` ulanýar)').toHaveProperty('address')
+      expect(t, 'Target indi `url` okaýar').toHaveProperty('url')
+      expect(t, '`address` backend meýdany däl').not.toHaveProperty('address')
     })
 
-    it('Target tipi `is_verified` ulanýar; backend `verification_status` gaýtarýar', async () => {
+    it('Target tipi `verification_status` ulanýar (öňki `is_verified` däl)', async () => {
       const { data } = await targetsApi.getTargets()
       const t = asList(data)[0]
-      expect(t, 'Target.is_verified ýerine backend verification_status berýär').toHaveProperty('is_verified')
+      expect(t, 'Target indi verification_status okaýar').toHaveProperty('verification_status')
+      expect(t, '`is_verified` backend meýdany däl').not.toHaveProperty('is_verified')
     })
 
-    it('Target tipi `name` ulanýar; backend bermeli', async () => {
+    it('Target-de `name` meýdany ýok (frontend tipinden aýryldy)', async () => {
       const { data } = await targetsApi.getTargets()
       const t = asList(data)[0]
-      expect(t).toHaveProperty('name')
+      expect(t, 'backend Target `name` bermeýär').not.toHaveProperty('name')
     })
   })
 })

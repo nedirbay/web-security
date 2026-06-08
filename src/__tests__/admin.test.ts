@@ -66,25 +66,35 @@ describe('Admin API ↔ frontend modelleri', () => {
     })
   })
 
-  describe('B) Frontend tip uýgunlygy', () => {
-    it('AuditLog tipi `target_type`/`target_id` ulanýar; backend `entity_type`/`entity_id` gaýtarýar', async () => {
+  describe('B) Frontend ↔ backend laýyklygy', () => {
+    it('AuditLog tipi `entity_type`/`entity_id` ulanýar (öňki `target_type`/`target_id` däl)', async () => {
       const { data } = await adminApi.getAuditLogs()
       const log = asList(data)[0]
-      expectFields(log, ['target_type', 'target_id'], 'AuditLog (frontend)')
+      expectFields(log, ['entity_type', 'entity_id'], 'AuditLog (frontend)')
+      expect(log, '`target_type` backend meýdany däl').not.toHaveProperty('target_type')
     })
 
-    it('BlogPost döretmek üçin frontend `slug` ibermeli (backend hökmany, unique talap edýär)', () => {
-      // types/api.ts BlogPost-de `slug` ýok, emma model `slug` (unique, required).
-      // Frontend createBlogPost slug-syz iberse backend 400 berer.
-      const blogPostTypeFields = ['id', 'title', 'content', 'tags', 'author', 'author_email', 'published_at']
-      expect(blogPostTypeFields, 'BlogPost tipinde `slug` bolmaly').toContain('slug')
+    it('createBlogPost `slug` bilen 201 berýär (slug hökmany, unique)', async () => {
+      // Düzediş: AdminBlogPostsView indi slug ugradýar; BlogPost tipinde slug bar.
+      const stamp = Date.now()
+      const res = await adminApi.createBlogPost({
+        title: `CT Post ${stamp}`,
+        slug: `ct-post-${stamp}`,
+        content: 'contract test body',
+        tags: 'ct',
+        status: 'published',
+      })
+      expect(res.status, 'slug bilen blog post 201 döreýär').toBe(201)
+      // arassalama
+      if (res.data?.id) await adminApi.deleteBlogPost(res.data.id)
     })
 
-    it('User tipi (admin) `role`-y string hökmünde ulanýar; backend nested obýekt gaýtarýar', async () => {
-      // auth store isAdmin: user.role === "admin" (string). AdminUserSerializer role -> { id, name, ... }
+    it('AdminUser `role` nested obýekt ýa-da null (string `admin` däl)', async () => {
+      // Düzediş: isAdmin role-a däl, is_staff-a esaslanýar. role -> { id, name } | null.
       const { data } = await adminApi.getUsers()
-      const u = asList(data)[0]
-      expect(typeof u.role, 'frontend role:string garaşýar, backend obýekt berýär').toBe('string')
+      const u: any = asList(data)[0]
+      expect(['object'], 'role obýekt ýa-da null bolmaly, string däl').toContain(typeof u.role)
+      expect(typeof u.role, 'role string `admin` däl').not.toBe('string')
     })
   })
 })

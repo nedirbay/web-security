@@ -27,7 +27,8 @@ export const useAuthStore = defineStore('auth', {
 
   getters: {
     isLoggedIn: (state) => !!state.token,
-    isAdmin: (state) => state.user?.role === 'admin',
+    // Backend admin barlaglary `is_staff`-a esaslanýar (IsAdminUser permission).
+    isAdmin: (state) => state.user?.is_staff === true,
   },
 
   actions: {
@@ -48,8 +49,10 @@ export const useAuthStore = defineStore('auth', {
       this.error = null
       try {
         const response = await apiClient.post('/users/login/', credentials)
+        // Backend JWT diňe { access, refresh } gaýtarýar — ulanyjy obýektini
+        // aýratyn /users/me/ endpointinden çekýäris.
         this.persistToken(response.data.access)
-        this.persistUser(response.data.user)
+        await this.fetchMe()
         return true
       } catch (err: any) {
         this.error = err.response?.data?.detail || 'Giriş şowsuz tamamlandy.'
@@ -59,7 +62,12 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    async register(userData: { username: string; email: string; password: string }) {
+    async register(userData: {
+      username: string
+      email: string
+      password: string
+      password_confirm: string
+    }) {
       this.loading = true
       this.error = null
       try {

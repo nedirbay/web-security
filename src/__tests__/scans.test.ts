@@ -42,38 +42,29 @@ describe('Scans API ↔ frontend modelleri', () => {
     })
   })
 
-  describe('B) Frontend tip uýgunlygy', () => {
-    it('Scan tipi `target_name` ulanýar; backend bermeli', async () => {
+  describe('B) Frontend ↔ backend laýyklygy', () => {
+    it('Scan tipi `completed_at` ulanýar (öňki `finished_at` däl)', async () => {
       const { data } = await scansApi.getScans()
-      expect(asList(data)[0]).toHaveProperty('target_name')
+      const s = asList(data)[0]
+      expect(s, 'Scan indi completed_at okaýar').toHaveProperty('completed_at')
+      expect(s, '`finished_at` backend meýdany däl').not.toHaveProperty('finished_at')
     })
 
-    it('Scan tipi `target_address` ulanýar; backend bermeli', async () => {
+    it('Scan-de frontendiň öňki ýasama meýdanlary ýok (target_name/target_address/progress/vulnerabilities_count)', async () => {
       const { data } = await scansApi.getScans()
-      expect(asList(data)[0]).toHaveProperty('target_address')
+      const s = asList(data)[0]
+      for (const f of ['target_name', 'target_address', 'progress', 'vulnerabilities_count']) {
+        expect(s, `backend Scan \`${f}\` bermeýär`).not.toHaveProperty(f)
+      }
     })
 
-    it('Scan tipi `progress` ulanýar; backend bermeli', async () => {
+    it("frontend ScanType bahalary backend choices bilen gabat gelýär (passive|active|full|api)", async () => {
+      // types/api.ts: ScanType = 'passive' | 'active' | 'full' | 'api'
+      const frontendTypes = ['passive', 'active', 'full', 'api']
       const { data } = await scansApi.getScans()
-      expect(asList(data)[0]).toHaveProperty('progress')
-    })
-
-    it('Scan tipi `finished_at` ulanýar; backend `completed_at` gaýtarýar (AT UÝGUNSYZ)', async () => {
-      const { data } = await scansApi.getScans()
-      expect(asList(data)[0]).toHaveProperty('finished_at')
-    })
-
-    it('Scan tipi `vulnerabilities_count` ulanýar; backend bermeli', async () => {
-      const { data } = await scansApi.getScans()
-      expect(asList(data)[0]).toHaveProperty('vulnerabilities_count')
-    })
-
-    it("frontend ScanType 'quick'/'port' backend tarapyndan goldanmaly", async () => {
-      // types/api.ts: ScanType = 'full' | 'quick' | 'api' | 'port'
-      // Backend ScanType.choices: passive|active|full|api -> quick/port ÝALŇYŞ
-      const backendTypes = ['passive', 'active', 'full', 'api']
-      expect(backendTypes, "ScanType 'quick' backend-de ýok").toContain('quick')
-      expect(backendTypes, "ScanType 'port' backend-de ýok").toContain('port')
+      for (const s of asList(data)) {
+        expect(frontendTypes, `scan_type ${s.scan_type} frontend ScanType-da bolmaly`).toContain(s.scan_type)
+      }
     })
   })
 })

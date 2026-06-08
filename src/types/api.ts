@@ -11,96 +11,103 @@ export interface User {
   id: number
   username: string
   email: string
-  role?: string
+  first_name?: string
+  last_name?: string
   phone?: string
+  // Backend `role` core.Role-a ForeignKey (string `admin` däl). Admin paneli
+  // bukulan obýekt gaýtaryp biler; adaty `/users/me/` ony bermeýär.
+  // Admin barlagy üçin `is_staff` ulanylýar.
+  role?: number | { id: number; name: string } | null
+  is_staff?: boolean
   is_active?: boolean
   date_joined?: string
+  profile?: Record<string, any> | null
 }
 
 export interface ApiKey {
   id: number
   name: string
   key?: string
-  prefix?: string
+  is_active?: boolean
   created_at?: string
   last_used_at?: string
 }
 
 export type TargetStatus = 'active' | 'inactive'
+export type VerificationStatus = 'pending' | 'verified'
 
 export interface Target {
   id: number
-  name?: string
-  address: string
+  url: string
   is_active: boolean
-  is_verified?: boolean
+  verification_status?: VerificationStatus | string
+  verification_method?: string
+  verification_token?: string
+  verified_at?: string
   owner?: number | string
   owner_email?: string
   created_at?: string
   updated_at?: string
 }
 
-export type ScanStatus = 'pending' | 'running' | 'in_progress' | 'completed' | 'failed' | 'cancelled'
-export type ScanType = 'full' | 'quick' | 'api' | 'port'
+export type ScanStatus = 'pending' | 'queued' | 'running' | 'completed' | 'failed'
+export type ScanType = 'passive' | 'active' | 'full' | 'api'
 
 export interface Scan {
   id: number
+  owner?: number | string
   target: number
-  target_name?: string
-  target_address?: string
   scan_type: ScanType | string
   status: ScanStatus | string
-  progress?: number
+  depth?: string | number
   started_at?: string
-  finished_at?: string
+  completed_at?: string
   created_at?: string
-  vulnerabilities_count?: number
 }
 
-export type Severity = 'critical' | 'high' | 'medium' | 'low' | 'info'
-export type VulnStatus = 'open' | 'in_progress' | 'resolved' | 'closed' | 'false_positive'
+export type Severity = 'High' | 'Medium' | 'Low' | 'Info'
+export type LifecycleStatus = 'open' | 'reviewed' | 'fixed' | 'closed'
 
 export interface Vulnerability {
   id: number
   scan?: number
   target?: number
-  target_address?: string
-  title?: string
-  name?: string
-  description?: string
+  name: string
   severity: Severity | string
-  status: VulnStatus | string
+  lifecycle_status?: LifecycleStatus | string
   owasp_category?: string
-  owasp?: string
-  cwe?: string
-  cvss?: number
-  evidence?: string
-  remediation?: string
   url?: string
+  is_false_positive?: boolean
   created_at?: string
   updated_at?: string
 }
 
+export type ScheduleFrequency = 'daily' | 'weekly' | 'custom'
+
 export interface Schedule {
   id: number
   target: number
-  target_name?: string
-  target_address?: string
-  cron: string
   scan_type: ScanType | string
-  is_active?: boolean
+  frequency: ScheduleFrequency | string
+  custom_interval_minutes?: number | null
+  is_enabled?: boolean
   next_run_at?: string
   created_at?: string
 }
 
+export type BlogPostStatus = 'draft' | 'published'
+
 export interface BlogPost {
   id: number
   title: string
+  slug: string
   content: string
   tags: string
+  status?: BlogPostStatus | string
   author?: string
   author_email?: string
   published_at?: string
+  created_at?: string
 }
 
 export interface DocsPage {
@@ -109,6 +116,7 @@ export interface DocsPage {
   slug: string
   category: string
   content: string
+  is_published?: boolean
 }
 
 export interface Setting {
@@ -122,15 +130,11 @@ export interface AuditLog {
   id: number
   actor?: string
   actor_email?: string
-  user?: string
   action: string
-  target_type?: string
-  target_id?: number | string
-  object?: string
-  details?: any
+  entity_type?: string
+  entity_id?: number | string
   metadata?: any
   created_at?: string
-  timestamp?: string
 }
 
 export interface Role {

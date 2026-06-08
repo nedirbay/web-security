@@ -5,9 +5,32 @@ serializerleri/modelleri deňeşdirildi. Barlag **janly backend-e göni baglaný
 contract testleri arkaly geçirildi (`front/src/__tests__/`, vitest).
 
 - ✅ Backend endpoint ýollary (`endpoints.ts`) backend `urls.py` bilen **doly gabat gelýär**.
-- ❌ Maglumat modelleri (meýdan atlary, bahalar, payload talaplary) birnäçe ýerde **gabat gelmeýär**.
+- ✅ Maglumat modelleri **düzedildi** — frontend tipleri/komponentleri backende laýyklaşdyryldy.
 
-Test netijesi: `42` testden `18` geçdi (backend hakyky kontrakt), `24` ýykyldy (frontend uýgunsyzlyklary).
+## ✅ ÝAGDAÝY: ÇÖZÜLDI (2026-06-08)
+
+Aşakdaky ähli uýgunsyzlyklar düzedildi. Frontend backende laýyklaşdyryldy
+(backend hakykat — öz 82 testi geçýär). Soňky netije:
+
+- **Frontend contract testleri:** `38/38` geçýär (A) backend kontrakt + B) laýyklyk).
+- **Backend pytest:** `82/82` geçýär.
+- **`vue-tsc` type-check:** arassa (renamelar komponentlerde döwmedi).
+
+Düzediş ýörelgesi: meýdan atlary köplenç **frontendde** üýtgedildi; diňe `phone`
+backend `UserSerializer`-e goşuldy (model meýdany eýýäm bardy). `isAdmin` indi
+`is_staff`-a esaslanýar (`role` core.Role-a FK, string `admin` däl), login soňra
+`/users/me/` çekýär, register `password_confirm` ugradýar.
+
+> Aşakdaky tablisalar **öňki** uýgunsyzlyklary (taryhy maglumat) görkezýär.
+
+---
+
+### Şu tapgyrda goşmaça düzelen backend bug-lary
+- **Blog/Docs döretmek hiç kim üçin işlemeýärdi:** `apps/core/views.py`-de blog/docs
+  görnüşlerinde `authentication_classes = []` JWT-ni öçürýärdi → admin token bilen-de
+  `is_staff` hiç wagt `True` däldi (403). Aýryldy.
+- **CORS:** `CORS_ALLOW_ALL_ORIGINS=True` + credentials howpsuz däl/işlemeýän
+  kombinasiýady we `CORS_ALLOWED_ORIGINS` ýokdy. Anyk allow-list goşuldy.
 
 ---
 

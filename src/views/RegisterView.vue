@@ -46,7 +46,19 @@
               type="password" 
               required 
               class="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-200 placeholder-gray-400 text-black focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all" 
-              placeholder="Parol" 
+              placeholder="Parol"
+            />
+          </div>
+          <div>
+            <label for="password_confirm" class="sr-only">Paroly tassyklaň</label>
+            <input
+              v-model="form.password_confirm"
+              id="password_confirm"
+              name="password_confirm"
+              type="password"
+              required
+              class="appearance-none rounded-xl relative block w-full px-4 py-3 border border-gray-200 placeholder-gray-400 text-black focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+              placeholder="Paroly tassyklaň"
             />
           </div>
         </div>
@@ -86,7 +98,8 @@ const successMsg = ref('')
 const form = reactive({
   username: '',
   email: '',
-  password: ''
+  password: '',
+  password_confirm: ''
 })
 
 const handleRegister = async () => {

@@ -15,16 +15,17 @@
     <div v-if="mode === 'list'" class="flex flex-wrap items-center gap-4">
       <select v-model="filters.severity" class="px-4 py-3 rounded-xl border border-gray-100 bg-white shadow-sm font-medium text-sm">
         <option value="">All severities</option>
-        <option value="critical">Critical</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+        <option value="Info">Info</option>
       </select>
       <select v-model="filters.status" class="px-4 py-3 rounded-xl border border-gray-100 bg-white shadow-sm font-medium text-sm">
         <option value="">All statuses</option>
         <option value="open">Open</option>
+        <option value="reviewed">Reviewed</option>
+        <option value="fixed">Fixed</option>
         <option value="closed">Closed</option>
-        <option value="false_positive">False positive</option>
       </select>
       <button @click="fetchList" class="px-5 py-3 bg-blue-600 text-white text-sm font-bold rounded-xl">Apply</button>
     </div>
@@ -46,16 +47,16 @@
         <tbody class="divide-y divide-gray-50">
           <tr v-for="v in items" :key="v.id" class="hover:bg-gray-50/50">
             <td class="px-6 py-4">
-              <p class="text-sm font-bold text-black">{{ v.title || v.name }}</p>
-              <p class="text-xs text-gray-400">{{ v.target_address || v.target || '' }}</p>
+              <p class="text-sm font-bold text-black">{{ v.name }}</p>
+              <p class="text-xs text-gray-400">{{ v.url || v.target || '' }}</p>
             </td>
             <td class="px-6 py-4">
               <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold" :class="sevClass(v.severity)">
                 {{ v.severity }}
               </span>
             </td>
-            <td class="px-6 py-4 text-sm text-gray-500">{{ v.owasp_category || v.owasp || '-' }}</td>
-            <td class="px-6 py-4 text-sm text-gray-500">{{ v.status || '-' }}</td>
+            <td class="px-6 py-4 text-sm text-gray-500">{{ v.owasp_category || '-' }}</td>
+            <td class="px-6 py-4 text-sm text-gray-500">{{ v.lifecycle_status || '-' }}</td>
             <td class="px-6 py-4 text-right">
               <button @click="markFp(v)" class="text-blue-600 text-xs font-bold hover:underline mr-3">Mark FP</button>
               <button @click="openLifecycle(v)" class="text-emerald-600 text-xs font-bold hover:underline">Lifecycle</button>
@@ -76,7 +77,7 @@
         </div>
         <ul v-if="group.items && group.items.length" class="divide-y divide-gray-100">
           <li v-for="v in group.items" :key="v.id" class="py-2 flex justify-between gap-3">
-            <span class="text-sm text-black truncate">{{ v.title || v.name }}</span>
+            <span class="text-sm text-black truncate">{{ v.name }}</span>
             <span class="text-xs" :class="sevClass(v.severity)">{{ v.severity }}</span>
           </li>
         </ul>
@@ -93,8 +94,8 @@
             <label class="block text-sm font-bold text-gray-700 mb-2">Status</label>
             <select v-model="lifecycleForm.status" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none">
               <option value="open">Open</option>
-              <option value="in_progress">In progress</option>
-              <option value="resolved">Resolved</option>
+              <option value="reviewed">Reviewed</option>
+              <option value="fixed">Fixed</option>
               <option value="closed">Closed</option>
             </select>
           </div>
@@ -190,7 +191,7 @@ const markFp = async (v: any) => {
 
 const openLifecycle = (v: any) => {
   lifecycleTarget.value = v
-  lifecycleForm.status = v.status || 'open'
+  lifecycleForm.status = v.lifecycle_status || 'open'
   lifecycleForm.note = ''
   lifecycleError.value = ''
   showLifecycle.value = true

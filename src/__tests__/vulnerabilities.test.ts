@@ -42,50 +42,36 @@ describe('Vulnerabilities API ↔ frontend modelleri', () => {
     })
   })
 
-  describe('B) Frontend tip uýgunlygy', () => {
-    it('Vulnerability tipi `status` ulanýar; backend `lifecycle_status` gaýtarýar (MEÝDAN ADY UÝGUNSYZ)', async () => {
-      const { data } = await vulnerabilitiesApi.getVulnerabilities()
-      expect(asList(data)[0], 'frontend `status`, backend `lifecycle_status`').toHaveProperty('status')
-    })
-
-    it('Vulnerability tipiniň `severity` bahalary kiçi harp (frontend), backend baş harp ulanýar', async () => {
-      // types/api.ts Severity = 'critical' | 'high' | ... (kiçi harp)
+  describe('B) Frontend ↔ backend laýyklygy', () => {
+    it('Vulnerability tipi `lifecycle_status` ulanýar (öňki `status` däl)', async () => {
       const { data } = await vulnerabilitiesApi.getVulnerabilities()
       const v = asList(data)[0]
-      const frontendSeverities = ['critical', 'high', 'medium', 'low', 'info']
-      expect(
-        frontendSeverities,
-        `backend severity "${v.severity}" frontend Severity bahalaryna gabat gelmeli`,
-      ).toContain(v.severity)
+      expect(v, 'Vuln indi lifecycle_status okaýar').toHaveProperty('lifecycle_status')
+      expect(v, '`status` backend meýdany däl').not.toHaveProperty('status')
     })
 
-    it('Vulnerability tipi `title` ulanýar; backend `name` gaýtarýar', async () => {
+    it('Vulnerability tipi `name` ulanýar (öňki `title` däl)', async () => {
       const { data } = await vulnerabilitiesApi.getVulnerabilities()
-      expect(asList(data)[0]).toHaveProperty('title')
+      const v = asList(data)[0]
+      expect(v, 'Vuln indi name okaýar').toHaveProperty('name')
+      expect(v, '`title` backend meýdany däl').not.toHaveProperty('title')
     })
 
-    it('Vulnerability tipi `description`, `cwe`, `cvss`, `evidence`, `remediation` ulanýar; backend bermeli', async () => {
+    it('frontend Severity bahalary backend bilen gabat gelýär (High|Medium|Low|Info)', async () => {
+      // types/api.ts Severity = 'High' | 'Medium' | 'Low' | 'Info'
+      const frontendSeverities = ['High', 'Medium', 'Low', 'Info']
       const { data } = await vulnerabilitiesApi.getVulnerabilities()
-      expectFields(
-        asList(data)[0],
-        ['description', 'cwe', 'cvss', 'evidence', 'remediation'],
-        'Vulnerability (frontend goşmaça meýdanlary)',
-      )
+      for (const v of asList(data)) {
+        expect(frontendSeverities, `severity ${v.severity} frontend Severity-de bolmaly`).toContain(v.severity)
+      }
     })
 
-    it("updateLifecycle 'critical'/'resolved' ýaly frontend status bahalary backend tarapyndan kabul edilmeli", async () => {
-      // Backend lifecycle allowed: open|reviewed|fixed|closed
-      // Frontend VulnStatus: open|in_progress|resolved|closed|false_positive
+    it("updateLifecycle backend-laýyk status (`fixed`) iberýär -> 200", async () => {
+      // Düzediş: lifecycle bahalary indi open|reviewed|fixed|closed.
       const list = asList((await vulnerabilitiesApi.getVulnerabilities()).data)
       const id = list[0].id
-      let status = 0
-      try {
-        const res = await vulnerabilitiesApi.updateLifecycle(id, { status: 'resolved' })
-        status = res.status
-      } catch (e: any) {
-        status = e.response?.status ?? 0
-      }
-      expect(status, "frontend 'resolved' statusy backend tarapyndan kabul edilmeli (200)").toBe(200)
+      const res = await vulnerabilitiesApi.updateLifecycle(id, { status: 'fixed' })
+      expect(res.status, "`fixed` statusy backend tarapyndan kabul edilýär").toBe(200)
     })
   })
 })

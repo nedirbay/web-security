@@ -55,6 +55,17 @@
             <input v-model="form.title" type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600" />
           </div>
           <div>
+            <label class="block text-sm font-bold text-gray-700 mb-2">Slug</label>
+            <input v-model="form.slug" type="text" placeholder="boş goýsaňyz atdan döredilýär" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-2">Status</label>
+            <select v-model="form.status" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+            </select>
+          </div>
+          <div>
             <label class="block text-sm font-bold text-gray-700 mb-2">Tags (comma separated)</label>
             <input v-model="form.tags" type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-blue-600" />
           </div>
@@ -86,7 +97,15 @@ const hasPrev = ref(false)
 
 const showForm = ref(false)
 const editing = ref<any>(null)
-const form = reactive({ title: '', tags: '', content: '' })
+const form = reactive({ title: '', slug: '', status: 'published', tags: '', content: '' })
+
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
 const formError = ref('')
 const saving = ref(false)
 
@@ -120,6 +139,8 @@ const prev = () => hasPrev.value && fetchPosts(page.value - 1)
 const openCreate = () => {
   editing.value = null
   form.title = ''
+  form.slug = ''
+  form.status = 'published'
   form.tags = ''
   form.content = ''
   formError.value = ''
@@ -133,10 +154,14 @@ const openEdit = async (p: any) => {
     const res = await adminApi.getBlogPost(p.id)
     const d = res.data
     form.title = d.title || ''
+    form.slug = d.slug || ''
+    form.status = d.status || 'published'
     form.tags = d.tags || ''
     form.content = d.content || ''
   } catch {
     form.title = p.title
+    form.slug = p.slug || ''
+    form.status = p.status || 'published'
     form.tags = p.tags
     form.content = p.content
   }
@@ -147,6 +172,7 @@ const save = async () => {
   saving.value = true
   formError.value = ''
   try {
+    if (!form.slug && form.title) form.slug = slugify(form.title)
     if (editing.value) {
       await adminApi.updateBlogPost(editing.value.id, form)
     } else {

@@ -81,7 +81,7 @@
             <label class="block text-sm font-bold text-gray-700 mb-2">Target</label>
             <select v-model="newScan.target" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none">
               <option value="" disabled>Select target...</option>
-              <option v-for="t in targets" :key="t.id" :value="t.id">{{ t.name || t.address }}</option>
+              <option v-for="t in targets" :key="t.id" :value="t.id">{{ t.url }}</option>
             </select>
           </div>
           <div>

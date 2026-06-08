@@ -33,15 +33,20 @@ describe('Schedules API ↔ frontend modelleri', () => {
     })
   })
 
-  describe('B) Frontend tip uýgunlygy', () => {
-    it('Schedule tipi `cron` ulanýar; backend `frequency`+`custom_interval_minutes` gaýtarýar', async () => {
+  describe('B) Frontend ↔ backend laýyklygy', () => {
+    it('Schedule tipi `frequency`+`custom_interval_minutes` ulanýar (öňki `cron` däl)', async () => {
       const { data } = await scansApi.getSchedules()
-      expect(asList(data)[0], 'frontend `cron`, backend `frequency`').toHaveProperty('cron')
+      const s = asList(data)[0]
+      expect(s, 'Schedule indi frequency okaýar').toHaveProperty('frequency')
+      expect(s, 'Schedule custom_interval_minutes okaýar').toHaveProperty('custom_interval_minutes')
+      expect(s, '`cron` backend meýdany däl').not.toHaveProperty('cron')
     })
 
-    it('Schedule tipi `is_active` ulanýar; backend `is_enabled` gaýtarýar', async () => {
+    it('Schedule tipi `is_enabled` ulanýar (öňki `is_active` däl)', async () => {
       const { data } = await scansApi.getSchedules()
-      expect(asList(data)[0], 'frontend `is_active`, backend `is_enabled`').toHaveProperty('is_active')
+      const s = asList(data)[0]
+      expect(s, 'Schedule indi is_enabled okaýar').toHaveProperty('is_enabled')
+      expect(s, '`is_active` backend meýdany däl').not.toHaveProperty('is_active')
     })
   })
 })

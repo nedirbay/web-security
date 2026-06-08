@@ -55,7 +55,7 @@ export const adminApi = {
 }
 
 export const usersApi = {
-  register: (data: { username: string; email: string; password: string }) =>
+  register: (data: { username: string; email: string; password: string; password_confirm: string }) =>
     apiClient.post('/users/register/', data),
   login: (data: { email: string; password: string }) => apiClient.post('/users/login/', data),
   logout: () => apiClient.post('/users/logout/'),
@@ -81,7 +81,7 @@ export const targetsApi = {
     apiClient.patch<Target>(`/targets/${id}/`, data),
   deleteTarget: (id: number | string) => apiClient.delete(`/targets/${id}/`),
   toggleActive: (id: number | string) => apiClient.post<Target>(`/targets/${id}/toggle-active/`),
-  verifyOwnership: (id: number | string, data?: { method?: string; token?: string }) =>
+  verifyOwnership: (id: number | string, data?: { token?: string }) =>
     apiClient.post(`/targets/${id}/verify-ownership/`, data),
   assignOwner: (id: number | string, data: { user_id: number | string }) =>
     apiClient.post(`/targets/${id}/assign-owner/`, data),

@@ -27,9 +27,9 @@
         <tbody class="divide-y divide-gray-50">
           <tr v-for="log in logs" :key="log.id">
             <td class="px-6 py-4 text-xs text-gray-500">{{ formatDate(log.created_at || log.timestamp) }}</td>
-            <td class="px-6 py-4 text-sm font-bold text-black">{{ log.actor || log.user || log.actor_email || '-' }}</td>
+            <td class="px-6 py-4 text-sm font-bold text-black">{{ log.actor || log.actor_email || '-' }}</td>
             <td class="px-6 py-4 text-sm text-gray-500">{{ log.action }}</td>
-            <td class="px-6 py-4 text-xs font-mono text-gray-500">{{ log.target_type ? `${log.target_type}#${log.target_id}` : log.object || '-' }}</td>
+            <td class="px-6 py-4 text-xs font-mono text-gray-500">{{ log.entity_type ? `${log.entity_type}#${log.entity_id}` : '-' }}</td>
             <td class="px-6 py-4 text-xs text-gray-500 max-w-md truncate">{{ formatDetails(log) }}</td>
           </tr>
         </tbody>

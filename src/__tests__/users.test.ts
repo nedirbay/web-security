@@ -1,6 +1,8 @@
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia'
 import { usersApi } from '../api/endpoints'
 import apiClient from '../api/axios'
+import { useAuthStore } from '../stores/auth'
 import { CREDENTIALS, expectFields, login, logout } from './helpers/live'
 
 describe('Users API ↔ frontend modelleri', () => {
@@ -35,47 +37,54 @@ describe('Users API ↔ frontend modelleri', () => {
     })
   })
 
-  // ---- B) Frontend tipiniň çaklamalary (uýgunsyzlyk detektory) ----
-  describe('B) Frontend tip uýgunlygy', () => {
-    it('login jogaby `user` obýektini öz içine almaly (auth store `response.data.user` okaýar)', async () => {
-      // auth.ts -> persistUser(response.data.user). Backend diňe access/refresh gaýtarýar.
-      const { data } = await apiClient.post('/users/login/', CREDENTIALS.admin)
-      expect(data.user, 'auth store login-de user garaşýar, backend bermeýär').toBeDefined()
+  // ---- B) Frontend ↔ backend laýyklygy (düzedilenden soň) ----
+  describe('B) Frontend ↔ backend laýyklygy', () => {
+    beforeEach(() => {
+      setActivePinia(createPinia())
     })
 
-    it('GET /users/me/ `role` meýdanyny gaýtarmaly (auth store isAdmin = user.role === "admin")', async () => {
-      // auth.ts getter: isAdmin -> state.user?.role === "admin". UserSerializer-de `role` ýok.
+    it('auth store login() ulanyjyny /users/me/ arkaly doldurýar (login `user` gaýtarmaýar)', async () => {
+      // Düzediş: auth.ts login() token saklap, soňra fetchMe() çagyrýar.
+      const store = useAuthStore()
+      const ok = await store.login(CREDENTIALS.admin)
+      expect(ok, 'login üstünlikli bolmaly').toBe(true)
+      expect(store.user, 'login soňra user doldurylmaly').toBeTruthy()
+      expect(store.user).toHaveProperty('id')
+      expect(store.user).toHaveProperty('email')
+    })
+
+    it('isAdmin `is_staff`-a esaslanýar (role string `admin` däl — role FK)', async () => {
+      // Düzediş: isAdmin getter -> user?.is_staff === true.
+      const store = useAuthStore()
+      await store.login(CREDENTIALS.admin)
+      expect(store.user?.is_staff, 'admin ulanyjy is_staff=true').toBe(true)
+      expect(store.isAdmin, 'isAdmin is_staff arkaly true').toBe(true)
+    })
+
+    it('GET /users/me/ `phone` meýdanyny serializasiýa edýär', async () => {
       const { data } = await usersApi.getMe()
-      expect(data, "User tipi `role` ulanýar emma /users/me/ ony bermeýär").toHaveProperty('role')
+      expect(data, 'UserSerializer indi phone berýär').toHaveProperty('phone')
     })
 
-    it('User tipi `phone` ulanýar; backend ony serializasiýa etmeli', async () => {
-      const { data } = await usersApi.getMe()
-      expect(data).toHaveProperty('phone')
+    it('register({username,email,password,password_confirm}) -> 201', async () => {
+      // Düzediş: usersApi.register indi password_confirm ugradýar.
+      const unique = `ct_${Date.now()}`
+      const res = await usersApi.register({
+        username: unique,
+        email: `${unique}@example.com`,
+        password: 'StrongPass123!',
+        password_confirm: 'StrongPass123!',
+      })
+      expect(res.status, 'password_confirm bilen register 201 bermeli').toBe(201)
     })
 
-    it('register({username,email,password}) — frontend payload backend tarapyndan kabul edilmeli', async () => {
-      // usersApi.register diňe username/email/password ugradýar.
-      // Backend UserRegistrationSerializer `password_confirm`-y hökmany talap edýär.
-      const unique = `ct_${Date.now()}@example.com`
-      let status = 0
-      try {
-        const res = await usersApi.register({
-          username: `ct_${Date.now()}`,
-          email: unique,
-          password: 'StrongPass123!',
-        })
-        status = res.status
-      } catch (e: any) {
-        status = e.response?.status ?? 0
-      }
-      expect(status, 'frontend register payload-y password_confirm-siz 201 bermeli').toBe(201)
-    })
-
-    it('ApiKey tipi `prefix` ulanýar; backend ony bermeli', async () => {
+    it('ApiKey backend `is_active` berýär (`prefix` ýok)', async () => {
       const { data } = await usersApi.getApiKeys()
       const list = Array.isArray(data) ? data : (data as any).results
-      if (list.length) expect(list[0]).toHaveProperty('prefix')
+      if (list.length) {
+        expect(list[0], 'ApiKey is_active ulanýar').toHaveProperty('is_active')
+        expect(list[0], 'ApiKey-de prefix ýok').not.toHaveProperty('prefix')
+      }
     })
   })
 })

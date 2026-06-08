@@ -48,8 +48,8 @@
                       <GlobeIcon class="w-5 h-5" />
                     </div>
                     <div>
-                      <p class="text-sm font-bold text-black">{{ target.name || target.address }}</p>
-                      <p class="text-xs text-gray-400">{{ target.address }}</p>
+                      <p class="text-sm font-bold text-black">{{ target.url }}</p>
+                      <p class="text-xs text-gray-400">{{ target.verification_status || 'pending' }}</p>
                     </div>
                   </div>
                 </td>
@@ -61,7 +61,7 @@
                   >
                     {{ target.is_active ? 'Active' : 'Inactive' }}
                   </button>
-                  <span v-if="target.is_verified" class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600">Verified</span>
+                  <span v-if="target.verification_status === 'verified'" class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600">Verified</span>
                 </td>
                 <td class="px-6 py-4 text-sm text-gray-500">{{ target.owner_email || target.owner || '-' }}</td>
                 <td class="px-6 py-4 text-sm text-gray-500">{{ formatDate(target.created_at) }}</td>
@@ -98,12 +98,8 @@
         <h3 class="text-2xl font-bold text-black mb-6">{{ editingTarget ? 'Edit Target' : 'Add New Target' }}</h3>
         <form @submit.prevent="saveTarget" class="space-y-4">
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Target Name</label>
-            <input v-model="targetForm.name" type="text" placeholder="e.g. My Website" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none" />
-          </div>
-          <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Target Address (Domain or IP)</label>
-            <input v-model="targetForm.address" type="text" required placeholder="e.g. example.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none" />
+            <label class="block text-sm font-bold text-gray-700 mb-2">Target URL (Domain or IP)</label>
+            <input v-model="targetForm.url" type="text" required placeholder="e.g. https://example.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none" />
           </div>
           <p v-if="formError" class="text-red-500 text-xs font-bold">{{ formError }}</p>
           <button type="submit" :disabled="submitting" class="w-full py-4 bg-black text-white font-bold rounded-xl mt-4 disabled:opacity-50">
@@ -118,7 +114,7 @@
       <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showVerifyModal = false"></div>
       <div class="bg-white rounded-3xl w-full max-w-md p-8 relative z-10 shadow-2xl">
         <h3 class="text-2xl font-bold text-black mb-2">Verify Ownership</h3>
-        <p class="text-sm text-gray-500 mb-6">{{ activeTarget?.address }}</p>
+        <p class="text-sm text-gray-500 mb-6">{{ activeTarget?.url }}</p>
         <form @submit.prevent="submitVerify" class="space-y-4">
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-2">Verification Token</label>
@@ -137,7 +133,7 @@
       <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showAssignModal = false"></div>
       <div class="bg-white rounded-3xl w-full max-w-md p-8 relative z-10 shadow-2xl">
         <h3 class="text-2xl font-bold text-black mb-2">Assign Owner</h3>
-        <p class="text-sm text-gray-500 mb-6">{{ activeTarget?.address }}</p>
+        <p class="text-sm text-gray-500 mb-6">{{ activeTarget?.url }}</p>
         <form @submit.prevent="submitAssignOwner" class="space-y-4">
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-2">Owner User ID</label>
@@ -173,7 +169,7 @@ const submitting = ref(false)
 const showFormModal = ref(false)
 const editingTarget = ref<any>(null)
 const formError = ref('')
-const targetForm = reactive({ name: '', address: '' })
+const targetForm = reactive({ url: '' })
 
 const showVerifyModal = ref(false)
 const verifyForm = reactive({ token: '' })
@@ -202,16 +198,14 @@ const fetchTargets = async () => {
 
 const openCreate = () => {
   editingTarget.value = null
-  targetForm.name = ''
-  targetForm.address = ''
+  targetForm.url = ''
   formError.value = ''
   showFormModal.value = true
 }
 
 const openEdit = (t: any) => {
   editingTarget.value = t
-  targetForm.name = t.name || ''
-  targetForm.address = t.address || ''
+  targetForm.url = t.url || ''
   formError.value = ''
   showFormModal.value = true
 }
